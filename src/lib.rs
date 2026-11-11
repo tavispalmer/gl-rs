@@ -14,9 +14,9 @@ pub type GLdouble = f64;
 pub type GLuint = u32;
 pub type GLboolean = u8;
 pub type GLubyte = u8;
-pub const DEPTH_BUFFER_BIT: GLenum = 0x00000100;
-pub const STENCIL_BUFFER_BIT: GLenum = 0x00000400;
-pub const COLOR_BUFFER_BIT: GLenum = 0x00004000;
+pub const DEPTH_BUFFER_BIT: GLbitfield = 0x00000100;
+pub const STENCIL_BUFFER_BIT: GLbitfield = 0x00000400;
+pub const COLOR_BUFFER_BIT: GLbitfield = 0x00004000;
 pub const FALSE: GLboolean = 0;
 pub const TRUE: GLboolean = 1;
 pub const POINTS: GLenum = 0x0000;
@@ -1047,6 +1047,814 @@ pub type PFNGLUNIFORMMATRIX4X3FVPROC = unsafe extern "system" fn(
     value: *const GLfloat,
 );
 
+// 3.0
+pub type GLhalf = u16;
+pub const COMPARE_REF_TO_TEXTURE: GLenum = 0x884E;
+pub const CLIP_DISTANCE0: GLenum = 0x3000;
+pub const CLIP_DISTANCE1: GLenum = 0x3001;
+pub const CLIP_DISTANCE2: GLenum = 0x3002;
+pub const CLIP_DISTANCE3: GLenum = 0x3003;
+pub const CLIP_DISTANCE4: GLenum = 0x3004;
+pub const CLIP_DISTANCE5: GLenum = 0x3005;
+pub const CLIP_DISTANCE6: GLenum = 0x3006;
+pub const CLIP_DISTANCE7: GLenum = 0x3007;
+pub const MAX_CLIP_DISTANCES: GLenum = 0x0D32;
+pub const MAJOR_VERSION: GLenum = 0x821B;
+pub const MINOR_VERSION: GLenum = 0x821C;
+pub const NUM_EXTENSIONS: GLenum = 0x821D;
+pub const CONTEXT_FLAGS: GLenum = 0x821E;
+pub const COMPRESSED_RED: GLenum = 0x8225;
+pub const COMPRESSED_RG: GLenum = 0x8226;
+pub const CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT: GLenum = 0x00000001;
+pub const RGBA32F: GLenum = 0x8814;
+pub const RGB32F: GLenum = 0x8815;
+pub const RGBA16F: GLenum = 0x881A;
+pub const RGB16F: GLenum = 0x881B;
+pub const VERTEX_ATTRIB_ARRAY_INTEGER: GLenum = 0x88FD;
+pub const MAX_ARRAY_TEXTURE_LAYERS: GLenum = 0x88FF;
+pub const MIN_PROGRAM_TEXEL_OFFSET: GLenum = 0x8904;
+pub const MAX_PROGRAM_TEXEL_OFFSET: GLenum = 0x8905;
+pub const CLAMP_READ_COLOR: GLenum = 0x891C;
+pub const FIXED_ONLY: GLenum = 0x891D;
+pub const MAX_VARYING_COMPONENTS: GLenum = 0x8B4B;
+pub const TEXTURE_1D_ARRAY: GLenum = 0x8C18;
+pub const PROXY_TEXTURE_1D_ARRAY: GLenum = 0x8C19;
+pub const TEXTURE_2D_ARRAY: GLenum = 0x8C1A;
+pub const PROXY_TEXTURE_2D_ARRAY: GLenum = 0x8C1B;
+pub const TEXTURE_BINDING_1D_ARRAY: GLenum = 0x8C1C;
+pub const TEXTURE_BINDING_2D_ARRAY: GLenum = 0x8C1D;
+pub const R11F_G11F_B10F: GLenum = 0x8C3A;
+pub const UNSIGNED_INT_10F_11F_11F_REV: GLenum = 0x8C3B;
+pub const RGB9_E5: GLenum = 0x8C3D;
+pub const UNSIGNED_INT_5_9_9_9_REV: GLenum = 0x8C3E;
+pub const TEXTURE_SHARED_SIZE: GLenum = 0x8C3F;
+pub const TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH: GLenum = 0x8C76;
+pub const TRANSFORM_FEEDBACK_BUFFER_MODE: GLenum = 0x8C7F;
+pub const MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS: GLenum = 0x8C80;
+pub const TRANSFORM_FEEDBACK_VARYINGS: GLenum = 0x8C83;
+pub const TRANSFORM_FEEDBACK_BUFFER_START: GLenum = 0x8C84;
+pub const TRANSFORM_FEEDBACK_BUFFER_SIZE: GLenum = 0x8C85;
+pub const PRIMITIVES_GENERATED: GLenum = 0x8C87;
+pub const TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN: GLenum = 0x8C88;
+pub const RASTERIZER_DISCARD: GLenum = 0x8C89;
+pub const MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS: GLenum = 0x8C8A;
+pub const MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS: GLenum = 0x8C8B;
+pub const INTERLEAVED_ATTRIBS: GLenum = 0x8C8C;
+pub const SEPARATE_ATTRIBS: GLenum = 0x8C8D;
+pub const TRANSFORM_FEEDBACK_BUFFER: GLenum = 0x8C8E;
+pub const TRANSFORM_FEEDBACK_BUFFER_BINDING: GLenum = 0x8C8F;
+pub const RGBA32UI: GLenum = 0x8D70;
+pub const RGB32UI: GLenum = 0x8D71;
+pub const RGBA16UI: GLenum = 0x8D76;
+pub const RGB16UI: GLenum = 0x8D77;
+pub const RGBA8UI: GLenum = 0x8D7C;
+pub const RGB8UI: GLenum = 0x8D7D;
+pub const RGBA32I: GLenum = 0x8D82;
+pub const RGB32I: GLenum = 0x8D83;
+pub const RGBA16I: GLenum = 0x8D88;
+pub const RGB16I: GLenum = 0x8D89;
+pub const RGBA8I: GLenum = 0x8D8E;
+pub const RGB8I: GLenum = 0x8D8F;
+pub const RED_INTEGER: GLenum = 0x8D94;
+pub const GREEN_INTEGER: GLenum = 0x8D95;
+pub const BLUE_INTEGER: GLenum = 0x8D96;
+pub const RGB_INTEGER: GLenum = 0x8D98;
+pub const RGBA_INTEGER: GLenum = 0x8D99;
+pub const BGR_INTEGER: GLenum = 0x8D9A;
+pub const BGRA_INTEGER: GLenum = 0x8D9B;
+pub const SAMPLER_1D_ARRAY: GLenum = 0x8DC0;
+pub const SAMPLER_2D_ARRAY: GLenum = 0x8DC1;
+pub const SAMPLER_1D_ARRAY_SHADOW: GLenum = 0x8DC3;
+pub const SAMPLER_2D_ARRAY_SHADOW: GLenum = 0x8DC4;
+pub const SAMPLER_CUBE_SHADOW: GLenum = 0x8DC5;
+pub const UNSIGNED_INT_VEC2: GLenum = 0x8DC6;
+pub const UNSIGNED_INT_VEC3: GLenum = 0x8DC7;
+pub const UNSIGNED_INT_VEC4: GLenum = 0x8DC8;
+pub const INT_SAMPLER_1D: GLenum = 0x8DC9;
+pub const INT_SAMPLER_2D: GLenum = 0x8DCA;
+pub const INT_SAMPLER_3D: GLenum = 0x8DCB;
+pub const INT_SAMPLER_CUBE: GLenum = 0x8DCC;
+pub const INT_SAMPLER_1D_ARRAY: GLenum = 0x8DCE;
+pub const INT_SAMPLER_2D_ARRAY: GLenum = 0x8DCF;
+pub const UNSIGNED_INT_SAMPLER_1D: GLenum = 0x8DD1;
+pub const UNSIGNED_INT_SAMPLER_2D: GLenum = 0x8DD2;
+pub const UNSIGNED_INT_SAMPLER_3D: GLenum = 0x8DD3;
+pub const UNSIGNED_INT_SAMPLER_CUBE: GLenum = 0x8DD4;
+pub const UNSIGNED_INT_SAMPLER_1D_ARRAY: GLenum = 0x8DD6;
+pub const UNSIGNED_INT_SAMPLER_2D_ARRAY: GLenum = 0x8DD7;
+pub const QUERY_WAIT: GLenum = 0x8E13;
+pub const QUERY_NO_WAIT: GLenum = 0x8E14;
+pub const QUERY_BY_REGION_WAIT: GLenum = 0x8E15;
+pub const QUERY_BY_REGION_NO_WAIT: GLenum = 0x8E16;
+pub const BUFFER_ACCESS_FLAGS: GLenum = 0x911F;
+pub const BUFFER_MAP_LENGTH: GLenum = 0x9120;
+pub const BUFFER_MAP_OFFSET: GLenum = 0x9121;
+pub const DEPTH_COMPONENT32F: GLenum = 0x8CAC;
+pub const DEPTH32F_STENCIL8: GLenum = 0x8CAD;
+pub const FLOAT_32_UNSIGNED_INT_24_8_REV: GLenum = 0x8DAD;
+pub const INVALID_FRAMEBUFFER_OPERATION: GLenum = 0x0506;
+pub const FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING: GLenum = 0x8210;
+pub const FRAMEBUFFER_ATTACHMENT_COMPONENT_TYPE: GLenum = 0x8211;
+pub const FRAMEBUFFER_ATTACHMENT_RED_SIZE: GLenum = 0x8212;
+pub const FRAMEBUFFER_ATTACHMENT_GREEN_SIZE: GLenum = 0x8213;
+pub const FRAMEBUFFER_ATTACHMENT_BLUE_SIZE: GLenum = 0x8214;
+pub const FRAMEBUFFER_ATTACHMENT_ALPHA_SIZE: GLenum = 0x8215;
+pub const FRAMEBUFFER_ATTACHMENT_DEPTH_SIZE: GLenum = 0x8216;
+pub const FRAMEBUFFER_ATTACHMENT_STENCIL_SIZE: GLenum = 0x8217;
+pub const FRAMEBUFFER_DEFAULT: GLenum = 0x8218;
+pub const FRAMEBUFFER_UNDEFINED: GLenum = 0x8219;
+pub const DEPTH_STENCIL_ATTACHMENT: GLenum = 0x821A;
+pub const MAX_RENDERBUFFER_SIZE: GLenum = 0x84E8;
+pub const DEPTH_STENCIL: GLenum = 0x84F9;
+pub const UNSIGNED_INT_24_8: GLenum = 0x84FA;
+pub const DEPTH24_STENCIL8: GLenum = 0x88F0;
+pub const TEXTURE_STENCIL_SIZE: GLenum = 0x88F1;
+pub const TEXTURE_RED_TYPE: GLenum = 0x8C10;
+pub const TEXTURE_GREEN_TYPE: GLenum = 0x8C11;
+pub const TEXTURE_BLUE_TYPE: GLenum = 0x8C12;
+pub const TEXTURE_ALPHA_TYPE: GLenum = 0x8C13;
+pub const TEXTURE_DEPTH_TYPE: GLenum = 0x8C16;
+pub const UNSIGNED_NORMALIZED: GLenum = 0x8C17;
+pub const FRAMEBUFFER_BINDING: GLenum = 0x8CA6;
+pub const DRAW_FRAMEBUFFER_BINDING: GLenum = 0x8CA6;
+pub const RENDERBUFFER_BINDING: GLenum = 0x8CA7;
+pub const READ_FRAMEBUFFER: GLenum = 0x8CA8;
+pub const DRAW_FRAMEBUFFER: GLenum = 0x8CA9;
+pub const READ_FRAMEBUFFER_BINDING: GLenum = 0x8CAA;
+pub const RENDERBUFFER_SAMPLES: GLenum = 0x8CAB;
+pub const FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE: GLenum = 0x8CD0;
+pub const FRAMEBUFFER_ATTACHMENT_OBJECT_NAME: GLenum = 0x8CD1;
+pub const FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL: GLenum = 0x8CD2;
+pub const FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE: GLenum = 0x8CD3;
+pub const FRAMEBUFFER_ATTACHMENT_TEXTURE_LAYER: GLenum = 0x8CD4;
+pub const FRAMEBUFFER_COMPLETE: GLenum = 0x8CD5;
+pub const FRAMEBUFFER_INCOMPLETE_ATTACHMENT: GLenum = 0x8CD6;
+pub const FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT: GLenum = 0x8CD7;
+pub const FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER: GLenum = 0x8CDB;
+pub const FRAMEBUFFER_INCOMPLETE_READ_BUFFER: GLenum = 0x8CDC;
+pub const FRAMEBUFFER_UNSUPPORTED: GLenum = 0x8CDD;
+pub const MAX_COLOR_ATTACHMENTS: GLenum = 0x8CDF;
+pub const COLOR_ATTACHMENT0: GLenum = 0x8CE0;
+pub const COLOR_ATTACHMENT1: GLenum = 0x8CE1;
+pub const COLOR_ATTACHMENT2: GLenum = 0x8CE2;
+pub const COLOR_ATTACHMENT3: GLenum = 0x8CE3;
+pub const COLOR_ATTACHMENT4: GLenum = 0x8CE4;
+pub const COLOR_ATTACHMENT5: GLenum = 0x8CE5;
+pub const COLOR_ATTACHMENT6: GLenum = 0x8CE6;
+pub const COLOR_ATTACHMENT7: GLenum = 0x8CE7;
+pub const COLOR_ATTACHMENT8: GLenum = 0x8CE8;
+pub const COLOR_ATTACHMENT9: GLenum = 0x8CE9;
+pub const COLOR_ATTACHMENT10: GLenum = 0x8CEA;
+pub const COLOR_ATTACHMENT11: GLenum = 0x8CEB;
+pub const COLOR_ATTACHMENT12: GLenum = 0x8CEC;
+pub const COLOR_ATTACHMENT13: GLenum = 0x8CED;
+pub const COLOR_ATTACHMENT14: GLenum = 0x8CEE;
+pub const COLOR_ATTACHMENT15: GLenum = 0x8CEF;
+pub const COLOR_ATTACHMENT16: GLenum = 0x8CF0;
+pub const COLOR_ATTACHMENT17: GLenum = 0x8CF1;
+pub const COLOR_ATTACHMENT18: GLenum = 0x8CF2;
+pub const COLOR_ATTACHMENT19: GLenum = 0x8CF3;
+pub const COLOR_ATTACHMENT20: GLenum = 0x8CF4;
+pub const COLOR_ATTACHMENT21: GLenum = 0x8CF5;
+pub const COLOR_ATTACHMENT22: GLenum = 0x8CF6;
+pub const COLOR_ATTACHMENT23: GLenum = 0x8CF7;
+pub const COLOR_ATTACHMENT24: GLenum = 0x8CF8;
+pub const COLOR_ATTACHMENT25: GLenum = 0x8CF9;
+pub const COLOR_ATTACHMENT26: GLenum = 0x8CFA;
+pub const COLOR_ATTACHMENT27: GLenum = 0x8CFB;
+pub const COLOR_ATTACHMENT28: GLenum = 0x8CFC;
+pub const COLOR_ATTACHMENT29: GLenum = 0x8CFD;
+pub const COLOR_ATTACHMENT30: GLenum = 0x8CFE;
+pub const COLOR_ATTACHMENT31: GLenum = 0x8CFF;
+pub const DEPTH_ATTACHMENT: GLenum = 0x8D00;
+pub const STENCIL_ATTACHMENT: GLenum = 0x8D20;
+pub const FRAMEBUFFER: GLenum = 0x8D40;
+pub const RENDERBUFFER: GLenum = 0x8D41;
+pub const RENDERBUFFER_WIDTH: GLenum = 0x8D42;
+pub const RENDERBUFFER_HEIGHT: GLenum = 0x8D43;
+pub const RENDERBUFFER_INTERNAL_FORMAT: GLenum = 0x8D44;
+pub const STENCIL_INDEX1: GLenum = 0x8D46;
+pub const STENCIL_INDEX4: GLenum = 0x8D47;
+pub const STENCIL_INDEX8: GLenum = 0x8D48;
+pub const STENCIL_INDEX16: GLenum = 0x8D49;
+pub const RENDERBUFFER_RED_SIZE: GLenum = 0x8D50;
+pub const RENDERBUFFER_GREEN_SIZE: GLenum = 0x8D51;
+pub const RENDERBUFFER_BLUE_SIZE: GLenum = 0x8D52;
+pub const RENDERBUFFER_ALPHA_SIZE: GLenum = 0x8D53;
+pub const RENDERBUFFER_DEPTH_SIZE: GLenum = 0x8D54;
+pub const RENDERBUFFER_STENCIL_SIZE: GLenum = 0x8D55;
+pub const FRAMEBUFFER_INCOMPLETE_MULTISAMPLE: GLenum = 0x8D56;
+pub const MAX_SAMPLES: GLenum = 0x8D57;
+pub const FRAMEBUFFER_SRGB: GLenum = 0x8DB9;
+pub const HALF_FLOAT: GLenum = 0x140B;
+pub const MAP_READ_BIT: GLbitfield = 0x0001;
+pub const MAP_WRITE_BIT: GLbitfield = 0x0002;
+pub const MAP_INVALIDATE_RANGE_BIT: GLbitfield = 0x0004;
+pub const MAP_INVALIDATE_BUFFER_BIT: GLbitfield = 0x0008;
+pub const MAP_FLUSH_EXPLICIT_BIT: GLbitfield = 0x0010;
+pub const MAP_UNSYNCHRONIZED_BIT: GLbitfield = 0x0020;
+pub const COMPRESSED_RED_RGTC1: GLenum = 0x8DBB;
+pub const COMPRESSED_SIGNED_RED_RGTC1: GLenum = 0x8DBC;
+pub const COMPRESSED_RG_RGTC2: GLenum = 0x8DBD;
+pub const COMPRESSED_SIGNED_RG_RGTC2: GLenum = 0x8DBE;
+pub const RG: GLenum = 0x8227;
+pub const RG_INTEGER: GLenum = 0x8228;
+pub const R8: GLenum = 0x8229;
+pub const R16: GLenum = 0x822A;
+pub const RG8: GLenum = 0x822B;
+pub const RG16: GLenum = 0x822C;
+pub const R16F: GLenum = 0x822D;
+pub const R32F: GLenum = 0x822E;
+pub const RG16F: GLenum = 0x822F;
+pub const RG32F: GLenum = 0x8230;
+pub const R8I: GLenum = 0x8231;
+pub const R8UI: GLenum = 0x8232;
+pub const R16I: GLenum = 0x8233;
+pub const R16UI: GLenum = 0x8234;
+pub const R32I: GLenum = 0x8235;
+pub const R32UI: GLenum = 0x8236;
+pub const RG8I: GLenum = 0x8237;
+pub const RG8UI: GLenum = 0x8238;
+pub const RG16I: GLenum = 0x8239;
+pub const RG16UI: GLenum = 0x823A;
+pub const RG32I: GLenum = 0x823B;
+pub const RG32UI: GLenum = 0x823C;
+pub const VERTEX_ARRAY_BINDING: GLenum = 0x85B5;
+pub type PFNGLCOLORMASKIPROC = unsafe extern "system" fn(
+    index: GLuint,
+    r: GLboolean,
+    g: GLboolean,
+    b: GLboolean,
+    a: GLboolean,
+);
+#[allow(non_camel_case_types)]
+pub type PFNGLGETBOOLEANI_VPROC =
+    unsafe extern "system" fn(target: GLenum, index: GLuint, data: *mut GLboolean);
+#[allow(non_camel_case_types)]
+pub type PFNGLGETINTEGERI_VPROC =
+    unsafe extern "system" fn(target: GLenum, index: GLuint, data: *mut GLint);
+pub type PFNGLENABLEIPROC = unsafe extern "system" fn(target: GLenum, index: GLuint);
+pub type PFNGLDISABLEIPROC = unsafe extern "system" fn(target: GLenum, index: GLuint);
+pub type PFNGLISENABLEDIPROC =
+    unsafe extern "system" fn(target: GLenum, index: GLuint) -> GLboolean;
+pub type PFNGLBEGINTRANSFORMFEEDBACKPROC = unsafe extern "system" fn(primitive_mode: GLenum);
+pub type PFNGLENDTRANSFORMFEEDBACKPROC = unsafe extern "system" fn();
+pub type PFNGLBINDBUFFERRANGEPROC = unsafe extern "system" fn(
+    target: GLenum,
+    index: GLuint,
+    buffer: GLuint,
+    offset: GLintptr,
+    size: GLsizeiptr,
+);
+pub type PFNGLBINDBUFFERBASEPROC =
+    unsafe extern "system" fn(target: GLenum, index: GLuint, buffer: GLuint);
+pub type PFNGLTRANSFORMFEEDBACKVARYINGSPROC = unsafe extern "system" fn(
+    program: GLuint,
+    count: GLsizei,
+    varyings: *const *const GLchar,
+    buffer_mode: GLenum,
+);
+pub type PFNGLGETTRANSFORMFEEDBACKVARYINGPROC = unsafe extern "system" fn(
+    program: GLuint,
+    index: GLuint,
+    buf_size: GLsizei,
+    length: *mut GLsizei,
+    size: *mut GLsizei,
+    type_: *mut GLenum,
+    name: *mut GLchar,
+);
+pub type PFNGLCLAMPCOLORPROC = unsafe extern "system" fn(target: GLenum, clamp: GLenum);
+pub type PFNGLBEGINCONDITIONALRENDERPROC = unsafe extern "system" fn(id: GLuint, mode: GLenum);
+pub type PFNGLENDCONDITIONALRENDERPROC = unsafe extern "system" fn();
+pub type PFNGLVERTEXATTRIBIPOINTERPROC = unsafe extern "system" fn(
+    index: GLuint,
+    size: GLint,
+    type_: GLenum,
+    stride: GLsizei,
+    pointer: *const c_void,
+);
+pub type PFNGLGETVERTEXATTRIBIIVPROC =
+    unsafe extern "system" fn(index: GLuint, pname: GLenum, params: *mut GLint);
+pub type PFNGLGETVERTEXATTRIBIUIVPROC =
+    unsafe extern "system" fn(index: GLuint, pname: GLenum, params: *mut GLuint);
+pub type PFNGLVERTEXATTRIBI1IPROC = unsafe extern "system" fn(index: GLuint, x: GLint);
+pub type PFNGLVERTEXATTRIBI2IPROC = unsafe extern "system" fn(index: GLuint, x: GLint, y: GLint);
+pub type PFNGLVERTEXATTRIBI3IPROC =
+    unsafe extern "system" fn(index: GLuint, x: GLint, y: GLint, z: GLint);
+pub type PFNGLVERTEXATTRIBI4IPROC =
+    unsafe extern "system" fn(index: GLuint, x: GLint, y: GLint, z: GLint, w: GLint);
+pub type PFNGLVERTEXATTRIBI1UIPROC = unsafe extern "system" fn(index: GLuint, x: GLuint);
+pub type PFNGLVERTEXATTRIBI2UIPROC = unsafe extern "system" fn(index: GLuint, x: GLuint, y: GLuint);
+pub type PFNGLVERTEXATTRIBI3UIPROC =
+    unsafe extern "system" fn(index: GLuint, x: GLuint, y: GLuint, z: GLuint);
+pub type PFNGLVERTEXATTRIBI4UIPROC =
+    unsafe extern "system" fn(index: GLuint, x: GLuint, y: GLuint, z: GLuint, w: GLuint);
+pub type PFNGLVERTEXATTRIBI1IVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLint);
+pub type PFNGLVERTEXATTRIBI2IVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLint);
+pub type PFNGLVERTEXATTRIBI3IVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLint);
+pub type PFNGLVERTEXATTRIBI4IVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLint);
+pub type PFNGLVERTEXATTRIBI1UIVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLuint);
+pub type PFNGLVERTEXATTRIBI2UIVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLuint);
+pub type PFNGLVERTEXATTRIBI3UIVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLuint);
+pub type PFNGLVERTEXATTRIBI4UIVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLuint);
+pub type PFNGLVERTEXATTRIBI4BVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLbyte);
+pub type PFNGLVERTEXATTRIBI4SVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLshort);
+pub type PFNGLVERTEXATTRIBI4UBVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLubyte);
+pub type PFNGLVERTEXATTRIBI4USVPROC = unsafe extern "system" fn(index: GLuint, v: *const GLushort);
+pub type PFNGLGETUNIFORMUIVPROC =
+    unsafe extern "system" fn(program: GLuint, location: GLint, params: *mut GLuint);
+pub type PFNGLBINDFRAGDATALOCATIONPROC =
+    unsafe extern "system" fn(program: GLuint, color: GLuint, name: *const GLchar);
+pub type PFNGLGETFRAGDATALOCATIONPROC =
+    unsafe extern "system" fn(program: GLuint, name: *const GLchar) -> GLint;
+pub type PFNGLUNIFORM1UIPROC = unsafe extern "system" fn(location: GLint, v0: GLuint);
+pub type PFNGLUNIFORM2UIPROC = unsafe extern "system" fn(location: GLint, v0: GLuint, v1: GLuint);
+pub type PFNGLUNIFORM3UIPROC =
+    unsafe extern "system" fn(location: GLint, v0: GLuint, v1: GLuint, v2: GLuint);
+pub type PFNGLUNIFORM4UIPROC =
+    unsafe extern "system" fn(location: GLint, v0: GLuint, v1: GLuint, v2: GLuint, v3: GLuint);
+pub type PFNGLUNIFORM1UIVPROC =
+    unsafe extern "system" fn(location: GLint, count: GLsizei, value: *const GLuint);
+pub type PFNGLUNIFORM2UIVPROC =
+    unsafe extern "system" fn(location: GLint, count: GLsizei, value: *const GLuint);
+pub type PFNGLUNIFORM3UIVPROC =
+    unsafe extern "system" fn(location: GLint, count: GLsizei, value: *const GLuint);
+pub type PFNGLUNIFORM4UIVPROC =
+    unsafe extern "system" fn(location: GLint, count: GLsizei, value: *const GLuint);
+pub type PFNGLTEXPARAMETERIIVPROC =
+    unsafe extern "system" fn(target: GLenum, pname: GLenum, params: *const GLint);
+pub type PFNGLTEXPARAMETERIUIVPROC =
+    unsafe extern "system" fn(target: GLenum, pname: GLenum, params: *const GLuint);
+pub type PFNGLGETTEXPARAMETERIIVPROC =
+    unsafe extern "system" fn(target: GLenum, pname: GLenum, params: *mut GLint);
+pub type PFNGLGETTEXPARAMETERIUIVPROC =
+    unsafe extern "system" fn(target: GLenum, pname: GLenum, params: *mut GLuint);
+pub type PFNGLCLEARBUFFERIVPROC =
+    unsafe extern "system" fn(buffer: GLenum, drawbuffer: GLint, value: *const GLint);
+pub type PFNGLCLEARBUFFERUIVPROC =
+    unsafe extern "system" fn(buffer: GLenum, drawbuffer: GLint, value: *const GLuint);
+pub type PFNGLCLEARBUFFERFVPROC =
+    unsafe extern "system" fn(buffer: GLenum, drawbuffer: GLint, value: *const GLfloat);
+pub type PFNGLCLEARBUFFERFIPROC =
+    unsafe extern "system" fn(buffer: GLenum, drawbuffer: GLint, depth: GLfloat, stencil: GLint);
+pub type PFNGLGETSTRINGIPROC =
+    unsafe extern "system" fn(name: GLenum, index: GLuint) -> *const GLubyte;
+pub type PFNGLISRENDERBUFFERPROC = unsafe extern "system" fn(renderbuffer: GLuint) -> GLboolean;
+pub type PFNGLBINDRENDERBUFFERPROC =
+    unsafe extern "system" fn(target: GLenum, renderbuffer: GLuint);
+pub type PFNGLDELETERENDERBUFFERSPROC =
+    unsafe extern "system" fn(n: GLsizei, renderbuffers: *const GLuint);
+pub type PFNGLGENRENDERBUFFERSPROC =
+    unsafe extern "system" fn(n: GLsizei, renderbuffers: *mut GLuint);
+pub type PFNGLRENDERBUFFERSTORAGEPROC = unsafe extern "system" fn(
+    target: GLenum,
+    internalformat: GLenum,
+    width: GLsizei,
+    height: GLsizei,
+);
+pub type PFNGLGETRENDERBUFFERPARAMETERIVPROC =
+    unsafe extern "system" fn(target: GLenum, pname: GLenum, params: *mut GLint);
+pub type PFNGLISFRAMEBUFFERPROC = unsafe extern "system" fn(framebuffer: GLuint) -> GLboolean;
+pub type PFNGLBINDFRAMEBUFFERPROC = unsafe extern "system" fn(target: GLenum, framebuffer: GLuint);
+pub type PFNGLDELETEFRAMEBUFFERSPROC =
+    unsafe extern "system" fn(n: GLsizei, framebuffers: *const GLuint);
+pub type PFNGLGENFRAMEBUFFERSPROC =
+    unsafe extern "system" fn(n: GLsizei, framebuffers: *mut GLuint);
+pub type PFNGLCHECKFRAMEBUFFERSTATUSPROC = unsafe extern "system" fn(target: GLenum) -> GLenum;
+pub type PFNGLFRAMEBUFFERTEXTURE1DPROC = unsafe extern "system" fn(
+    target: GLenum,
+    attachment: GLenum,
+    textarget: GLenum,
+    texture: GLuint,
+    level: GLint,
+);
+pub type PFNGLFRAMEBUFFERTEXTURE2DPROC = unsafe extern "system" fn(
+    target: GLenum,
+    attachment: GLenum,
+    textarget: GLenum,
+    texture: GLuint,
+    level: GLint,
+);
+pub type PFNGLFRAMEBUFFERTEXTURE3DPROC = unsafe extern "system" fn(
+    target: GLenum,
+    attachment: GLenum,
+    textarget: GLenum,
+    texture: GLuint,
+    level: GLint,
+    zoffset: GLint,
+);
+pub type PFNGLFRAMEBUFFERRENDERBUFFERPROC = unsafe extern "system" fn(
+    target: GLenum,
+    attachment: GLenum,
+    renderbuffertarget: GLenum,
+    renderbuffer: GLuint,
+);
+pub type PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC = unsafe extern "system" fn(
+    target: GLenum,
+    attachment: GLenum,
+    pname: GLenum,
+    params: *mut GLint,
+);
+pub type PFNGLGENERATEMIPMAPPROC = unsafe extern "system" fn(target: GLenum);
+pub type PFNGLBLITFRAMEBUFFERPROC = unsafe extern "system" fn(
+    src_x0: GLint,
+    src_y0: GLint,
+    src_x1: GLint,
+    src_y1: GLint,
+    dst_x0: GLint,
+    dst_y0: GLint,
+    dst_x1: GLint,
+    dst_y1: GLint,
+    mask: GLbitfield,
+    filter: GLenum,
+);
+pub type PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC = unsafe extern "system" fn(
+    target: GLenum,
+    samples: GLsizei,
+    internalformat: GLenum,
+    width: GLsizei,
+    height: GLsizei,
+);
+pub type PFNGLFRAMEBUFFERTEXTURELAYERPROC = unsafe extern "system" fn(
+    target: GLenum,
+    attachment: GLenum,
+    texture: GLuint,
+    level: GLint,
+    layer: GLint,
+);
+pub type PFNGLMAPBUFFERRANGEPROC = unsafe extern "system" fn(
+    target: GLenum,
+    offset: GLintptr,
+    length: GLsizeiptr,
+    access: GLbitfield,
+) -> *mut c_void;
+pub type PFNGLFLUSHMAPPEDBUFFERRANGEPROC =
+    unsafe extern "system" fn(target: GLenum, offset: GLintptr, length: GLsizeiptr);
+pub type PFNGLBINDVERTEXARRAYPROC = unsafe extern "system" fn(array: GLuint);
+pub type PFNGLDELETEVERTEXARRAYSPROC = unsafe extern "system" fn(n: GLsizei, arrays: *const GLuint);
+pub type PFNGLGENVERTEXARRAYSPROC = unsafe extern "system" fn(n: GLsizei, arrays: *mut GLuint);
+pub type PFNGLISVERTEXARRAYPROC = unsafe extern "system" fn(array: GLuint) -> GLboolean;
+
+// 3.1
+pub const SAMPLER_2D_RECT: GLenum = 0x8B63;
+pub const SAMPLER_2D_RECT_SHADOW: GLenum = 0x8B64;
+pub const SAMPLER_BUFFER: GLenum = 0x8DC2;
+pub const INT_SAMPLER_2D_RECT: GLenum = 0x8DCD;
+pub const INT_SAMPLER_BUFFER: GLenum = 0x8DD0;
+pub const UNSIGNED_INT_SAMPLER_2D_RECT: GLenum = 0x8DD5;
+pub const UNSIGNED_INT_SAMPLER_BUFFER: GLenum = 0x8DD8;
+pub const TEXTURE_BUFFER: GLenum = 0x8C2A;
+pub const MAX_TEXTURE_BUFFER_SIZE: GLenum = 0x8C2B;
+pub const TEXTURE_BINDING_BUFFER: GLenum = 0x8C2C;
+pub const TEXTURE_BUFFER_DATA_STORE_BINDING: GLenum = 0x8C2D;
+pub const TEXTURE_RECTANGLE: GLenum = 0x84F5;
+pub const TEXTURE_BINDING_RECTANGLE: GLenum = 0x84F6;
+pub const PROXY_TEXTURE_RECTANGLE: GLenum = 0x84F7;
+pub const MAX_RECTANGLE_TEXTURE_SIZE: GLenum = 0x84F8;
+pub const R8_SNORM: GLenum = 0x8F94;
+pub const RG8_SNORM: GLenum = 0x8F95;
+pub const RGB8_SNORM: GLenum = 0x8F96;
+pub const RGBA8_SNORM: GLenum = 0x8F97;
+pub const R16_SNORM: GLenum = 0x8F98;
+pub const RG16_SNORM: GLenum = 0x8F99;
+pub const RGB16_SNORM: GLenum = 0x8F9A;
+pub const RGBA16_SNORM: GLenum = 0x8F9B;
+pub const SIGNED_NORMALIZED: GLenum = 0x8F9C;
+pub const PRIMITIVE_RESTART: GLenum = 0x8F9D;
+pub const PRIMITIVE_RESTART_INDEX: GLenum = 0x8F9E;
+pub const COPY_READ_BUFFER: GLenum = 0x8F36;
+pub const COPY_WRITE_BUFFER: GLenum = 0x8F37;
+pub const UNIFORM_BUFFER: GLenum = 0x8A11;
+pub const UNIFORM_BUFFER_BINDING: GLenum = 0x8A28;
+pub const UNIFORM_BUFFER_START: GLenum = 0x8A29;
+pub const UNIFORM_BUFFER_SIZE: GLenum = 0x8A2A;
+pub const MAX_VERTEX_UNIFORM_BLOCKS: GLenum = 0x8A2B;
+pub const MAX_GEOMETRY_UNIFORM_BLOCKS: GLenum = 0x8A2C;
+pub const MAX_FRAGMENT_UNIFORM_BLOCKS: GLenum = 0x8A2D;
+pub const MAX_COMBINED_UNIFORM_BLOCKS: GLenum = 0x8A2E;
+pub const MAX_UNIFORM_BUFFER_BINDINGS: GLenum = 0x8A2F;
+pub const MAX_UNIFORM_BLOCK_SIZE: GLenum = 0x8A30;
+pub const MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS: GLenum = 0x8A31;
+pub const MAX_COMBINED_GEOMETRY_UNIFORM_COMPONENTS: GLenum = 0x8A32;
+pub const MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS: GLenum = 0x8A33;
+pub const UNIFORM_BUFFER_OFFSET_ALIGNMENT: GLenum = 0x8A34;
+pub const ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH: GLenum = 0x8A35;
+pub const ACTIVE_UNIFORM_BLOCKS: GLenum = 0x8A36;
+pub const UNIFORM_TYPE: GLenum = 0x8A37;
+pub const UNIFORM_SIZE: GLenum = 0x8A38;
+pub const UNIFORM_NAME_LENGTH: GLenum = 0x8A39;
+pub const UNIFORM_BLOCK_INDEX: GLenum = 0x8A3A;
+pub const UNIFORM_OFFSET: GLenum = 0x8A3B;
+pub const UNIFORM_ARRAY_STRIDE: GLenum = 0x8A3C;
+pub const UNIFORM_MATRIX_STRIDE: GLenum = 0x8A3D;
+pub const UNIFORM_IS_ROW_MAJOR: GLenum = 0x8A3E;
+pub const UNIFORM_BLOCK_BINDING: GLenum = 0x8A3F;
+pub const UNIFORM_BLOCK_DATA_SIZE: GLenum = 0x8A40;
+pub const UNIFORM_BLOCK_NAME_LENGTH: GLenum = 0x8A41;
+pub const UNIFORM_BLOCK_ACTIVE_UNIFORMS: GLenum = 0x8A42;
+pub const UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES: GLenum = 0x8A43;
+pub const UNIFORM_BLOCK_REFERENCED_BY_VERTEX_SHADER: GLenum = 0x8A44;
+pub const UNIFORM_BLOCK_REFERENCED_BY_GEOMETRY_SHADER: GLenum = 0x8A45;
+pub const UNIFORM_BLOCK_REFERENCED_BY_FRAGMENT_SHADER: GLenum = 0x8A46;
+pub const INVALID_INDEX: GLenum = 0xFFFFFFFF;
+pub type PFNGLDRAWARRAYSINSTANCEDPROC =
+    unsafe extern "system" fn(mode: GLenum, first: GLint, count: GLsizei, instancecount: GLsizei);
+pub type PFNGLDRAWELEMENTSINSTANCEDPROC = unsafe extern "system" fn(
+    mode: GLenum,
+    count: GLsizei,
+    type_: GLenum,
+    indices: *const c_void,
+    instancecount: GLsizei,
+);
+pub type PFNGLTEXBUFFERPROC =
+    unsafe extern "system" fn(target: GLenum, internalformat: GLenum, buffer: GLuint);
+pub type PFNGLPRIMITIVERESTARTINDEXPROC = unsafe extern "system" fn(index: GLuint);
+pub type PFNGLCOPYBUFFERSUBDATAPROC = unsafe extern "system" fn(
+    read_target: GLenum,
+    write_target: GLenum,
+    read_offset: GLintptr,
+    write_offset: GLintptr,
+    size: GLsizeiptr,
+);
+pub type PFNGLGETUNIFORMINDICESPROC = unsafe extern "system" fn(
+    program: GLuint,
+    uniform_count: GLsizei,
+    uniform_names: *const *const GLchar,
+    uniform_indices: *mut GLuint,
+);
+pub type PFNGLGETACTIVEUNIFORMSIVPROC = unsafe extern "system" fn(
+    program: GLuint,
+    uniform_count: GLsizei,
+    uniform_indices: *const GLuint,
+    pname: GLenum,
+    params: *mut GLint,
+);
+pub type PFNGLGETACTIVEUNIFORMNAMEPROC = unsafe extern "system" fn(
+    program: GLuint,
+    uniform_index: GLuint,
+    buf_size: GLsizei,
+    length: *mut GLsizei,
+    uniform_name: *mut GLchar,
+);
+pub type PFNGLGETUNIFORMBLOCKINDEXPROC =
+    unsafe extern "system" fn(program: GLuint, uniform_block_name: *const GLchar) -> GLuint;
+pub type PFNGLGETACTIVEUNIFORMBLOCKIVPROC = unsafe extern "system" fn(
+    program: GLuint,
+    uniform_block_index: GLuint,
+    pname: GLenum,
+    params: *mut GLint,
+);
+pub type PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC = unsafe extern "system" fn(
+    program: GLuint,
+    uniform_block_index: GLuint,
+    buf_size: GLsizei,
+    length: *mut GLsizei,
+    uniform_block_name: *mut GLchar,
+);
+pub type PFNGLUNIFORMBLOCKBINDINGPROC = unsafe extern "system" fn(
+    program: GLuint,
+    uniform_block_index: GLuint,
+    uniform_block_binding: GLuint,
+);
+
+// 3.2
+#[repr(C)]
+pub struct __GLsync {
+    _unused: [u8; 0],
+}
+pub type GLsync = *mut __GLsync;
+pub type GLuint64 = u64;
+pub type GLint64 = i64;
+pub const CONTEXT_CORE_PROFILE_BIT: GLenum = 0x00000001;
+pub const CONTEXT_COMPATIBILITY_PROFILE_BIT: GLenum = 0x00000002;
+pub const LINES_ADJACENCY: GLenum = 0x000A;
+pub const LINE_STRIP_ADJACENCY: GLenum = 0x000B;
+pub const TRIANGLES_ADJACENCY: GLenum = 0x000C;
+pub const TRIANGLE_STRIP_ADJACENCY: GLenum = 0x000D;
+pub const PROGRAM_POINT_SIZE: GLenum = 0x8642;
+pub const MAX_GEOMETRY_TEXTURE_IMAGE_UNITS: GLenum = 0x8C29;
+pub const FRAMEBUFFER_ATTACHMENT_LAYERED: GLenum = 0x8DA7;
+pub const FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS: GLenum = 0x8DA8;
+pub const GEOMETRY_SHADER: GLenum = 0x8DD9;
+pub const GEOMETRY_VERTICES_OUT: GLenum = 0x8916;
+pub const GEOMETRY_INPUT_TYPE: GLenum = 0x8917;
+pub const GEOMETRY_OUTPUT_TYPE: GLenum = 0x8918;
+pub const MAX_GEOMETRY_UNIFORM_COMPONENTS: GLenum = 0x8DDF;
+pub const MAX_GEOMETRY_OUTPUT_VERTICES: GLenum = 0x8DE0;
+pub const MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS: GLenum = 0x8DE1;
+pub const MAX_VERTEX_OUTPUT_COMPONENTS: GLenum = 0x9122;
+pub const MAX_GEOMETRY_INPUT_COMPONENTS: GLenum = 0x9123;
+pub const MAX_GEOMETRY_OUTPUT_COMPONENTS: GLenum = 0x9124;
+pub const MAX_FRAGMENT_INPUT_COMPONENTS: GLenum = 0x9125;
+pub const CONTEXT_PROFILE_MASK: GLenum = 0x9126;
+pub const DEPTH_CLAMP: GLenum = 0x864F;
+pub const QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION: GLenum = 0x8E4C;
+pub const FIRST_VERTEX_CONVENTION: GLenum = 0x8E4D;
+pub const LAST_VERTEX_CONVENTION: GLenum = 0x8E4E;
+pub const PROVOKING_VERTEX: GLenum = 0x8E4F;
+pub const TEXTURE_CUBE_MAP_SEAMLESS: GLenum = 0x884F;
+pub const MAX_SERVER_WAIT_TIMEOUT: GLenum = 0x9111;
+pub const OBJECT_TYPE: GLenum = 0x9112;
+pub const SYNC_CONDITION: GLenum = 0x9113;
+pub const SYNC_STATUS: GLenum = 0x9114;
+pub const SYNC_FLAGS: GLenum = 0x9115;
+pub const SYNC_FENCE: GLenum = 0x9116;
+pub const SYNC_GPU_COMMANDS_COMPLETE: GLenum = 0x9117;
+pub const UNSIGNALED: GLenum = 0x9118;
+pub const SIGNALED: GLenum = 0x9119;
+pub const ALREADY_SIGNALED: GLenum = 0x911A;
+pub const TIMEOUT_EXPIRED: GLenum = 0x911B;
+pub const CONDITION_SATISFIED: GLenum = 0x911C;
+pub const WAIT_FAILED: GLenum = 0x911D;
+pub const TIMEOUT_IGNORED: GLuint64 = 0xFFFFFFFFFFFFFFFF;
+pub const SYNC_FLUSH_COMMANDS_BIT: GLbitfield = 0x00000001;
+pub const SAMPLE_POSITION: GLenum = 0x8E50;
+pub const SAMPLE_MASK: GLenum = 0x8E51;
+pub const SAMPLE_MASK_VALUE: GLenum = 0x8E52;
+pub const MAX_SAMPLE_MASK_WORDS: GLenum = 0x8E59;
+pub const TEXTURE_2D_MULTISAMPLE: GLenum = 0x9100;
+pub const PROXY_TEXTURE_2D_MULTISAMPLE: GLenum = 0x9101;
+pub const TEXTURE_2D_MULTISAMPLE_ARRAY: GLenum = 0x9102;
+pub const PROXY_TEXTURE_2D_MULTISAMPLE_ARRAY: GLenum = 0x9103;
+pub const TEXTURE_BINDING_2D_MULTISAMPLE: GLenum = 0x9104;
+pub const TEXTURE_BINDING_2D_MULTISAMPLE_ARRAY: GLenum = 0x9105;
+pub const TEXTURE_SAMPLES: GLenum = 0x9106;
+pub const TEXTURE_FIXED_SAMPLE_LOCATIONS: GLenum = 0x9107;
+pub const SAMPLER_2D_MULTISAMPLE: GLenum = 0x9108;
+pub const INT_SAMPLER_2D_MULTISAMPLE: GLenum = 0x9109;
+pub const UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE: GLenum = 0x910A;
+pub const SAMPLER_2D_MULTISAMPLE_ARRAY: GLenum = 0x910B;
+pub const INT_SAMPLER_2D_MULTISAMPLE_ARRAY: GLenum = 0x910C;
+pub const UNSIGNED_INT_SAMPLER_2D_MULTISAMPLE_ARRAY: GLenum = 0x910D;
+pub const MAX_COLOR_TEXTURE_SAMPLES: GLenum = 0x910E;
+pub const MAX_DEPTH_TEXTURE_SAMPLES: GLenum = 0x910F;
+pub const MAX_INTEGER_SAMPLES: GLenum = 0x9110;
+pub type PFNGLDRAWELEMENTSBASEVERTEXPROC = unsafe extern "system" fn(
+    mode: GLenum,
+    count: GLsizei,
+    type_: GLenum,
+    indices: *const c_void,
+    basevertex: GLint,
+);
+pub type PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC = unsafe extern "system" fn(
+    mode: GLenum,
+    start: GLuint,
+    end: GLuint,
+    count: GLsizei,
+    type_: GLenum,
+    indices: *const c_void,
+    basevertex: GLint,
+);
+pub type PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC = unsafe extern "system" fn(
+    mode: GLenum,
+    count: GLsizei,
+    type_: GLenum,
+    indices: *const c_void,
+    instancecount: GLsizei,
+    basevertex: GLint,
+);
+pub type PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC = unsafe extern "system" fn(
+    mode: GLenum,
+    count: *const GLsizei,
+    type_: GLenum,
+    indices: *const *const c_void,
+    drawcount: GLsizei,
+    basevertex: *const GLint,
+);
+pub type PFNGLPROVOKINGVERTEXPROC = unsafe extern "system" fn(mode: GLenum);
+pub type PFNGLFENCESYNCPROC =
+    unsafe extern "system" fn(condition: GLenum, flags: GLbitfield) -> GLsync;
+pub type PFNGLISSYNCPROC = unsafe extern "system" fn(sync: GLsync) -> GLboolean;
+pub type PFNGLDELETESYNCPROC = unsafe extern "system" fn(sync: GLsync);
+pub type PFNGLCLIENTWAITSYNCPROC =
+    unsafe extern "system" fn(sync: GLsync, flags: GLbitfield, timeout: GLuint64) -> GLenum;
+pub type PFNGLWAITSYNCPROC =
+    unsafe extern "system" fn(sync: GLsync, flags: GLbitfield, timeout: GLuint64);
+pub type PFNGLGETINTEGER64VPROC = unsafe extern "system" fn(pname: GLenum, data: *mut GLint64);
+pub type PFNGLGETSYNCIVPROC = unsafe extern "system" fn(
+    sync: GLsync,
+    pname: GLenum,
+    count: GLsizei,
+    length: *mut GLsizei,
+    values: *mut GLint,
+);
+#[allow(non_camel_case_types)]
+pub type PFNGLGETINTEGER64I_VPROC =
+    unsafe extern "system" fn(target: GLenum, index: GLuint, data: *mut GLint64);
+pub type PFNGLGETBUFFERPARAMETERI64VPROC =
+    unsafe extern "system" fn(target: GLenum, pname: GLenum, params: *mut GLint64);
+pub type PFNGLFRAMEBUFFERTEXTUREPROC =
+    unsafe extern "system" fn(target: GLenum, attachment: GLenum, texture: GLuint, level: GLint);
+pub type PFNGLTEXIMAGE2DMULTISAMPLEPROC = unsafe extern "system" fn(
+    target: GLenum,
+    samples: GLsizei,
+    internalformat: GLenum,
+    width: GLsizei,
+    height: GLsizei,
+    fixedsamplelocations: GLboolean,
+);
+pub type PFNGLTEXIMAGE3DMULTISAMPLEPROC = unsafe extern "system" fn(
+    target: GLenum,
+    samples: GLsizei,
+    internalformat: GLenum,
+    width: GLsizei,
+    height: GLsizei,
+    depth: GLsizei,
+    fixedsamplelocations: GLboolean,
+);
+pub type PFNGLGETMULTISAMPLEFVPROC =
+    unsafe extern "system" fn(pname: GLenum, index: GLuint, val: *mut GLfloat);
+pub type PFNGLSAMPLEMASKIPROC = unsafe extern "system" fn(mask_number: GLuint, mask: GLbitfield);
+
+// 3.3
+pub const VERTEX_ATTRIB_ARRAY_DIVISOR: GLenum = 0x88FE;
+pub const SRC1_COLOR: GLenum = 0x88F9;
+pub const ONE_MINUS_SRC1_COLOR: GLenum = 0x88FA;
+pub const ONE_MINUS_SRC1_ALPHA: GLenum = 0x88FB;
+pub const MAX_DUAL_SOURCE_DRAW_BUFFERS: GLenum = 0x88FC;
+pub const ANY_SAMPLES_PASSED: GLenum = 0x8C2F;
+pub const SAMPLER_BINDING: GLenum = 0x8919;
+pub const RGB10_A2UI: GLenum = 0x906F;
+pub const TEXTURE_SWIZZLE_R: GLenum = 0x8E42;
+pub const TEXTURE_SWIZZLE_G: GLenum = 0x8E43;
+pub const TEXTURE_SWIZZLE_B: GLenum = 0x8E44;
+pub const TEXTURE_SWIZZLE_A: GLenum = 0x8E45;
+pub const TEXTURE_SWIZZLE_RGBA: GLenum = 0x8E46;
+pub const TIME_ELAPSED: GLenum = 0x88BF;
+pub const TIMESTAMP: GLenum = 0x8E28;
+pub const INT_2_10_10_10_REV: GLenum = 0x8D9F;
+pub type PFNGLBINDFRAGDATALOCATIONINDEXEDPROC = unsafe extern "system" fn(
+    program: GLuint,
+    color_number: GLuint,
+    index: GLuint,
+    name: *const GLchar,
+);
+pub type PFNGLGETFRAGDATAINDEXPROC =
+    unsafe extern "system" fn(program: GLuint, name: *const GLchar) -> GLint;
+pub type PFNGLGENSAMPLERSPROC = unsafe extern "system" fn(count: GLsizei, samplers: *mut GLuint);
+pub type PFNGLDELETESAMPLERSPROC =
+    unsafe extern "system" fn(count: GLsizei, samplers: *const GLuint);
+pub type PFNGLISSAMPLERPROC = unsafe extern "system" fn(sampler: GLuint) -> GLboolean;
+pub type PFNGLBINDSAMPLERPROC = unsafe extern "system" fn(unit: GLuint, sampler: GLuint);
+pub type PFNGLSAMPLERPARAMETERIPROC =
+    unsafe extern "system" fn(sampler: GLuint, pname: GLenum, param: GLint);
+pub type PFNGLSAMPLERPARAMETERIVPROC =
+    unsafe extern "system" fn(sampler: GLuint, pname: GLenum, param: *const GLint);
+pub type PFNGLSAMPLERPARAMETERFPROC =
+    unsafe extern "system" fn(sampler: GLuint, pname: GLenum, param: GLfloat);
+pub type PFNGLSAMPLERPARAMETERFVPROC =
+    unsafe extern "system" fn(sampler: GLuint, pname: GLenum, param: *const GLfloat);
+pub type PFNGLSAMPLERPARAMETERIIVPROC =
+    unsafe extern "system" fn(sampler: GLuint, pname: GLenum, param: *const GLint);
+pub type PFNGLSAMPLERPARAMETERIUIVPROC =
+    unsafe extern "system" fn(sampler: GLuint, pname: GLenum, param: *const GLuint);
+pub type PFNGLGETSAMPLERPARAMETERIVPROC =
+    unsafe extern "system" fn(sampler: GLuint, pname: GLenum, params: *mut GLint);
+pub type PFNGLGETSAMPLERPARAMETERIIVPROC =
+    unsafe extern "system" fn(sampler: GLuint, pname: GLenum, params: *mut GLint);
+pub type PFNGLGETSAMPLERPARAMETERFVPROC =
+    unsafe extern "system" fn(sampler: GLuint, pname: GLenum, params: *mut GLfloat);
+pub type PFNGLGETSAMPLERPARAMETERIUIVPROC =
+    unsafe extern "system" fn(sampler: GLuint, pname: GLenum, params: *mut GLuint);
+pub type PFNGLQUERYCOUNTERPROC = unsafe extern "system" fn(id: GLuint, target: GLenum);
+pub type PFNGLGETQUERYOBJECTI64VPROC =
+    unsafe extern "system" fn(id: GLuint, pname: GLenum, params: *mut GLint64);
+pub type PFNGLGETQUERYOBJECTUI64VPROC =
+    unsafe extern "system" fn(id: GLuint, pname: GLenum, params: *mut GLuint64);
+pub type PFNGLVERTEXATTRIBDIVISORPROC = unsafe extern "system" fn(index: GLuint, divisor: GLuint);
+pub type PFNGLVERTEXATTRIBP1UIPROC =
+    unsafe extern "system" fn(index: GLuint, type_: GLenum, normalized: GLboolean, value: GLuint);
+pub type PFNGLVERTEXATTRIBP1UIVPROC = unsafe extern "system" fn(
+    index: GLuint,
+    type_: GLenum,
+    normalized: GLboolean,
+    value: *const GLuint,
+);
+pub type PFNGLVERTEXATTRIBP2UIPROC =
+    unsafe extern "system" fn(index: GLuint, type_: GLenum, normalized: GLboolean, value: GLuint);
+pub type PFNGLVERTEXATTRIBP2UIVPROC = unsafe extern "system" fn(
+    index: GLuint,
+    type_: GLenum,
+    normalized: GLboolean,
+    value: *const GLuint,
+);
+pub type PFNGLVERTEXATTRIBP3UIPROC =
+    unsafe extern "system" fn(index: GLuint, type_: GLenum, normalized: GLboolean, value: GLuint);
+pub type PFNGLVERTEXATTRIBP3UIVPROC = unsafe extern "system" fn(
+    index: GLuint,
+    type_: GLenum,
+    normalized: GLboolean,
+    value: *const GLuint,
+);
+pub type PFNGLVERTEXATTRIBP4UIPROC =
+    unsafe extern "system" fn(index: GLuint, type_: GLenum, normalized: GLboolean, value: GLuint);
+pub type PFNGLVERTEXATTRIBP4UIVPROC = unsafe extern "system" fn(
+    index: GLuint,
+    type_: GLenum,
+    normalized: GLboolean,
+    value: *const GLuint,
+);
+
 pub struct Gl {
     // 1.0
     cull_face: PFNGLCULLFACEPROC,
@@ -1265,6 +2073,157 @@ pub struct Gl {
     uniform_matrix4x2fv: PFNGLUNIFORMMATRIX4X2FVPROC,
     uniform_matrix3x4fv: PFNGLUNIFORMMATRIX3X4FVPROC,
     uniform_matrix4x3fv: PFNGLUNIFORMMATRIX4X3FVPROC,
+
+    // 3.0
+    color_maski: PFNGLCOLORMASKIPROC,
+    get_booleani_v: PFNGLGETBOOLEANI_VPROC,
+    get_integeri_v: PFNGLGETINTEGERI_VPROC,
+    enablei: PFNGLENABLEIPROC,
+    disablei: PFNGLDISABLEIPROC,
+    is_enabledi: PFNGLISENABLEDIPROC,
+    begin_transform_feedback: PFNGLBEGINTRANSFORMFEEDBACKPROC,
+    end_transform_feedback: PFNGLENDTRANSFORMFEEDBACKPROC,
+    bind_buffer_range: PFNGLBINDBUFFERRANGEPROC,
+    bind_buffer_base: PFNGLBINDBUFFERBASEPROC,
+    transform_feedback_varyings: PFNGLTRANSFORMFEEDBACKVARYINGSPROC,
+    get_transform_feedback_varying: PFNGLGETTRANSFORMFEEDBACKVARYINGPROC,
+    clamp_color: PFNGLCLAMPCOLORPROC,
+    begin_conditional_render: PFNGLBEGINCONDITIONALRENDERPROC,
+    end_conditional_render: PFNGLENDCONDITIONALRENDERPROC,
+    vertex_attrib_ipointer: PFNGLVERTEXATTRIBIPOINTERPROC,
+    get_vertex_attrib_iiv: PFNGLGETVERTEXATTRIBIIVPROC,
+    get_vertex_attrib_iuiv: PFNGLGETVERTEXATTRIBIUIVPROC,
+    vertex_attrib_i1i: PFNGLVERTEXATTRIBI1IPROC,
+    vertex_attrib_i2i: PFNGLVERTEXATTRIBI2IPROC,
+    vertex_attrib_i3i: PFNGLVERTEXATTRIBI3IPROC,
+    vertex_attrib_i4i: PFNGLVERTEXATTRIBI4IPROC,
+    vertex_attrib_i1ui: PFNGLVERTEXATTRIBI1UIPROC,
+    vertex_attrib_i2ui: PFNGLVERTEXATTRIBI2UIPROC,
+    vertex_attrib_i3ui: PFNGLVERTEXATTRIBI3UIPROC,
+    vertex_attrib_i4ui: PFNGLVERTEXATTRIBI4UIPROC,
+    vertex_attrib_i1iv: PFNGLVERTEXATTRIBI1IVPROC,
+    vertex_attrib_i2iv: PFNGLVERTEXATTRIBI2IVPROC,
+    vertex_attrib_i3iv: PFNGLVERTEXATTRIBI3IVPROC,
+    vertex_attrib_i4iv: PFNGLVERTEXATTRIBI4IVPROC,
+    vertex_attrib_i1uiv: PFNGLVERTEXATTRIBI1UIVPROC,
+    vertex_attrib_i2uiv: PFNGLVERTEXATTRIBI2UIVPROC,
+    vertex_attrib_i3uiv: PFNGLVERTEXATTRIBI3UIVPROC,
+    vertex_attrib_i4uiv: PFNGLVERTEXATTRIBI4UIVPROC,
+    vertex_attrib_i4bv: PFNGLVERTEXATTRIBI4BVPROC,
+    vertex_attrib_i4sv: PFNGLVERTEXATTRIBI4SVPROC,
+    vertex_attrib_i4ubv: PFNGLVERTEXATTRIBI4UBVPROC,
+    vertex_attrib_i4usv: PFNGLVERTEXATTRIBI4USVPROC,
+    get_uniformuiv: PFNGLGETUNIFORMUIVPROC,
+    bind_frag_data_location: PFNGLBINDFRAGDATALOCATIONPROC,
+    get_frag_data_location: PFNGLGETFRAGDATALOCATIONPROC,
+    uniform1ui: PFNGLUNIFORM1UIPROC,
+    uniform2ui: PFNGLUNIFORM2UIPROC,
+    uniform3ui: PFNGLUNIFORM3UIPROC,
+    uniform4ui: PFNGLUNIFORM4UIPROC,
+    uniform1uiv: PFNGLUNIFORM1UIVPROC,
+    uniform2uiv: PFNGLUNIFORM2UIVPROC,
+    uniform3uiv: PFNGLUNIFORM3UIVPROC,
+    uniform4uiv: PFNGLUNIFORM4UIVPROC,
+    tex_parameter_iiv: PFNGLTEXPARAMETERIIVPROC,
+    tex_parameter_iuiv: PFNGLTEXPARAMETERIUIVPROC,
+    get_tex_parameter_iiv: PFNGLGETTEXPARAMETERIIVPROC,
+    get_tex_parameter_iuiv: PFNGLGETTEXPARAMETERIUIVPROC,
+    clear_bufferiv: PFNGLCLEARBUFFERIVPROC,
+    clear_bufferuiv: PFNGLCLEARBUFFERUIVPROC,
+    clear_bufferfv: PFNGLCLEARBUFFERFVPROC,
+    clear_bufferfi: PFNGLCLEARBUFFERFIPROC,
+    get_stringi: PFNGLGETSTRINGIPROC,
+    is_renderbuffer: PFNGLISRENDERBUFFERPROC,
+    bind_renderbuffer: PFNGLBINDRENDERBUFFERPROC,
+    delete_renderbuffers: PFNGLDELETERENDERBUFFERSPROC,
+    gen_renderbuffers: PFNGLGENRENDERBUFFERSPROC,
+    renderbuffer_storage: PFNGLRENDERBUFFERSTORAGEPROC,
+    get_renderbuffer_parameteriv: PFNGLGETRENDERBUFFERPARAMETERIVPROC,
+    is_framebuffer: PFNGLISFRAMEBUFFERPROC,
+    bind_framebuffer: PFNGLBINDFRAMEBUFFERPROC,
+    delete_framebuffers: PFNGLDELETEFRAMEBUFFERSPROC,
+    gen_framebuffers: PFNGLGENFRAMEBUFFERSPROC,
+    check_framebuffer_status: PFNGLCHECKFRAMEBUFFERSTATUSPROC,
+    framebuffer_texture_1d: PFNGLFRAMEBUFFERTEXTURE1DPROC,
+    framebuffer_texture_2d: PFNGLFRAMEBUFFERTEXTURE2DPROC,
+    framebuffer_texture_3d: PFNGLFRAMEBUFFERTEXTURE3DPROC,
+    framebuffer_renderbuffer: PFNGLFRAMEBUFFERRENDERBUFFERPROC,
+    get_framebuffer_attachment_parameteriv: PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC,
+    generate_mipmap: PFNGLGENERATEMIPMAPPROC,
+    blit_framebuffer: PFNGLBLITFRAMEBUFFERPROC,
+    renderbuffer_storage_multisample: PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC,
+    framebuffer_texture_layer: PFNGLFRAMEBUFFERTEXTURELAYERPROC,
+    map_buffer_range: PFNGLMAPBUFFERRANGEPROC,
+    flush_mapped_buffer_range: PFNGLFLUSHMAPPEDBUFFERRANGEPROC,
+    bind_vertex_array: PFNGLBINDVERTEXARRAYPROC,
+    delete_vertex_arrays: PFNGLDELETEVERTEXARRAYSPROC,
+    gen_vertex_arrays: PFNGLGENVERTEXARRAYSPROC,
+    is_vertex_array: PFNGLISVERTEXARRAYPROC,
+
+    // 3.1
+    draw_arrays_instanced: PFNGLDRAWARRAYSINSTANCEDPROC,
+    draw_elements_instanced: PFNGLDRAWELEMENTSINSTANCEDPROC,
+    tex_buffer: PFNGLTEXBUFFERPROC,
+    primitive_restart_index: PFNGLPRIMITIVERESTARTINDEXPROC,
+    copy_buffer_sub_data: PFNGLCOPYBUFFERSUBDATAPROC,
+    get_uniform_indices: PFNGLGETUNIFORMINDICESPROC,
+    get_active_uniformsiv: PFNGLGETACTIVEUNIFORMSIVPROC,
+    get_active_uniform_name: PFNGLGETACTIVEUNIFORMNAMEPROC,
+    get_uniform_block_index: PFNGLGETUNIFORMBLOCKINDEXPROC,
+    get_active_uniform_blockiv: PFNGLGETACTIVEUNIFORMBLOCKIVPROC,
+    get_active_uniform_block_name: PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC,
+    uniform_block_binding: PFNGLUNIFORMBLOCKBINDINGPROC,
+
+    // 3.2
+    draw_elements_base_vertex: PFNGLDRAWELEMENTSBASEVERTEXPROC,
+    draw_range_elements_base_vertex: PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC,
+    draw_elements_instanced_base_vertex: PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC,
+    multi_draw_elements_base_vertex: PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC,
+    provoking_vertex: PFNGLPROVOKINGVERTEXPROC,
+    fence_sync: PFNGLFENCESYNCPROC,
+    is_sync: PFNGLISSYNCPROC,
+    delete_sync: PFNGLDELETESYNCPROC,
+    client_wait_sync: PFNGLCLIENTWAITSYNCPROC,
+    wait_sync: PFNGLWAITSYNCPROC,
+    get_integer64v: PFNGLGETINTEGER64VPROC,
+    get_synciv: PFNGLGETSYNCIVPROC,
+    get_integer64i_v: PFNGLGETINTEGER64I_VPROC,
+    get_buffer_parameteri64v: PFNGLGETBUFFERPARAMETERI64VPROC,
+    framebuffer_texture: PFNGLFRAMEBUFFERTEXTUREPROC,
+    tex_image_2dmultisample: PFNGLTEXIMAGE2DMULTISAMPLEPROC,
+    tex_image_3dmultisample: PFNGLTEXIMAGE3DMULTISAMPLEPROC,
+    get_multisamplefv: PFNGLGETMULTISAMPLEFVPROC,
+    sample_maski: PFNGLSAMPLEMASKIPROC,
+
+    // 3.3
+    bind_frag_data_location_indexed: PFNGLBINDFRAGDATALOCATIONINDEXEDPROC,
+    get_frag_data_index: PFNGLGETFRAGDATAINDEXPROC,
+    gen_samplers: PFNGLGENSAMPLERSPROC,
+    delete_samplers: PFNGLDELETESAMPLERSPROC,
+    is_sampler: PFNGLISSAMPLERPROC,
+    bind_sampler: PFNGLBINDSAMPLERPROC,
+    sampler_parameteri: PFNGLSAMPLERPARAMETERIPROC,
+    sampler_parameteriv: PFNGLSAMPLERPARAMETERIVPROC,
+    sampler_parameterf: PFNGLSAMPLERPARAMETERFPROC,
+    sampler_parameterfv: PFNGLSAMPLERPARAMETERFVPROC,
+    sampler_parameter_iiv: PFNGLSAMPLERPARAMETERIIVPROC,
+    sampler_parameter_iuiv: PFNGLSAMPLERPARAMETERIUIVPROC,
+    get_sampler_parameteriv: PFNGLGETSAMPLERPARAMETERIVPROC,
+    get_sampler_parameter_iiv: PFNGLGETSAMPLERPARAMETERIIVPROC,
+    get_sampler_parameterfv: PFNGLGETSAMPLERPARAMETERFVPROC,
+    get_sampler_parameter_iuiv: PFNGLGETSAMPLERPARAMETERIUIVPROC,
+    query_counter: PFNGLQUERYCOUNTERPROC,
+    get_query_objecti64v: PFNGLGETQUERYOBJECTI64VPROC,
+    get_query_objectui64v: PFNGLGETQUERYOBJECTUI64VPROC,
+    vertex_attrib_divisor: PFNGLVERTEXATTRIBDIVISORPROC,
+    vertex_attrib_p1ui: PFNGLVERTEXATTRIBP1UIPROC,
+    vertex_attrib_p1uiv: PFNGLVERTEXATTRIBP1UIVPROC,
+    vertex_attrib_p2ui: PFNGLVERTEXATTRIBP2UIPROC,
+    vertex_attrib_p2uiv: PFNGLVERTEXATTRIBP2UIVPROC,
+    vertex_attrib_p3ui: PFNGLVERTEXATTRIBP3UIPROC,
+    vertex_attrib_p3uiv: PFNGLVERTEXATTRIBP3UIVPROC,
+    vertex_attrib_p4ui: PFNGLVERTEXATTRIBP4UIPROC,
+    vertex_attrib_p4uiv: PFNGLVERTEXATTRIBP4UIVPROC,
 }
 
 impl Gl {
@@ -4062,6 +5021,2053 @@ impl Gl {
                     mem::transmute(val)
                 }
             },
+            color_maski: unsafe {
+                unsafe extern "system" fn color_maski(
+                    _index: GLuint,
+                    _r: GLboolean,
+                    _g: GLboolean,
+                    _b: GLboolean,
+                    _a: GLboolean,
+                ) {
+                    panic!("Unable to load color_maski")
+                }
+                let val = f(c"glColorMaski");
+                if val.is_null() {
+                    color_maski
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_booleani_v: unsafe {
+                unsafe extern "system" fn get_booleani_v(
+                    _target: GLenum,
+                    _index: GLuint,
+                    _data: *mut GLboolean,
+                ) {
+                    panic!("Unable to load get_booleani_v")
+                }
+                let val = f(c"glGetBooleani_v");
+                if val.is_null() {
+                    get_booleani_v
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_integeri_v: unsafe {
+                unsafe extern "system" fn get_integeri_v(
+                    _target: GLenum,
+                    _index: GLuint,
+                    _data: *mut GLint,
+                ) {
+                    panic!("Unable to load get_integeri_v")
+                }
+                let val = f(c"glGetIntegeri_v");
+                if val.is_null() {
+                    get_integeri_v
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            enablei: unsafe {
+                unsafe extern "system" fn enablei(_target: GLenum, _index: GLuint) {
+                    panic!("Unable to load enablei")
+                }
+                let val = f(c"glEnablei");
+                if val.is_null() {
+                    enablei
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            disablei: unsafe {
+                unsafe extern "system" fn disablei(_target: GLenum, _index: GLuint) {
+                    panic!("Unable to load disablei")
+                }
+                let val = f(c"glDisablei");
+                if val.is_null() {
+                    disablei
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            is_enabledi: unsafe {
+                unsafe extern "system" fn is_enabledi(
+                    _target: GLenum,
+                    _index: GLuint,
+                ) -> GLboolean {
+                    panic!("Unable to load is_enabledi")
+                }
+                let val = f(c"glIsEnabledi");
+                if val.is_null() {
+                    is_enabledi
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            begin_transform_feedback: unsafe {
+                unsafe extern "system" fn begin_transform_feedback(_primitive_mode: GLenum) {
+                    panic!("Unable to load begin_transform_feedback")
+                }
+                let val = f(c"glBeginTransformFeedback");
+                if val.is_null() {
+                    begin_transform_feedback
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            end_transform_feedback: unsafe {
+                unsafe extern "system" fn end_transform_feedback() {
+                    panic!("Unable to load end_transform_feedback")
+                }
+                let val = f(c"glEndTransformFeedback");
+                if val.is_null() {
+                    end_transform_feedback
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            bind_buffer_range: unsafe {
+                unsafe extern "system" fn bind_buffer_range(
+                    _target: GLenum,
+                    _index: GLuint,
+                    _buffer: GLuint,
+                    _offset: GLintptr,
+                    _size: GLsizeiptr,
+                ) {
+                    panic!("Unable to load bind_buffer_range")
+                }
+                let val = f(c"glBindBufferRange");
+                if val.is_null() {
+                    bind_buffer_range
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            bind_buffer_base: unsafe {
+                unsafe extern "system" fn bind_buffer_base(
+                    _target: GLenum,
+                    _index: GLuint,
+                    _buffer: GLuint,
+                ) {
+                    panic!("Unable to load bind_buffer_base")
+                }
+                let val = f(c"glBindBufferBase");
+                if val.is_null() {
+                    bind_buffer_base
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            transform_feedback_varyings: unsafe {
+                unsafe extern "system" fn transform_feedback_varyings(
+                    _program: GLuint,
+                    _count: GLsizei,
+                    _varyings: *const *const GLchar,
+                    _buffer_mode: GLenum,
+                ) {
+                    panic!("Unable to load transform_feedback_varyings")
+                }
+                let val = f(c"glTransformFeedbackVaryings");
+                if val.is_null() {
+                    transform_feedback_varyings
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_transform_feedback_varying: unsafe {
+                unsafe extern "system" fn get_transform_feedback_varying(
+                    _program: GLuint,
+                    _index: GLuint,
+                    _buf_size: GLsizei,
+                    _length: *mut GLsizei,
+                    _size: *mut GLsizei,
+                    _type: *mut GLenum,
+                    _name: *mut GLchar,
+                ) {
+                    panic!("Unable to load get_transform_feedback_varying")
+                }
+                let val = f(c"glGetTransformFeedbackVarying");
+                if val.is_null() {
+                    get_transform_feedback_varying
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            clamp_color: unsafe {
+                unsafe extern "system" fn clamp_color(_target: GLenum, _clamp: GLenum) {
+                    panic!("Unable to load clamp_color")
+                }
+                let val = f(c"glClampColor");
+                if val.is_null() {
+                    clamp_color
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            begin_conditional_render: unsafe {
+                unsafe extern "system" fn begin_conditional_render(_id: GLuint, _mode: GLenum) {
+                    panic!("Unable to load begin_conditional_render")
+                }
+                let val = f(c"glBeginConditionalRender");
+                if val.is_null() {
+                    begin_conditional_render
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            end_conditional_render: unsafe {
+                unsafe extern "system" fn end_conditional_render() {
+                    panic!("Unable to load end_conditional_render")
+                }
+                let val = f(c"glEndConditionalRender");
+                if val.is_null() {
+                    end_conditional_render
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_ipointer: unsafe {
+                unsafe extern "system" fn vertex_attrib_ipointer(
+                    _index: GLuint,
+                    _size: GLint,
+                    _type: GLenum,
+                    _stride: GLsizei,
+                    _pointer: *const c_void,
+                ) {
+                    panic!("Unable to load vertex_attrib_ipointer")
+                }
+                let val = f(c"glVertexAttribIPointer");
+                if val.is_null() {
+                    vertex_attrib_ipointer
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_vertex_attrib_iiv: unsafe {
+                unsafe extern "system" fn get_vertex_attrib_iiv(
+                    _index: GLuint,
+                    _pname: GLenum,
+                    _params: *mut GLint,
+                ) {
+                    panic!("Unable to load get_vertex_attrib_iiv")
+                }
+                let val = f(c"glGetVertexAttribIiv");
+                if val.is_null() {
+                    get_vertex_attrib_iiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_vertex_attrib_iuiv: unsafe {
+                unsafe extern "system" fn get_vertex_attrib_iuiv(
+                    _index: GLuint,
+                    _pname: GLenum,
+                    _params: *mut GLuint,
+                ) {
+                    panic!("Unable to load get_vertex_attrib_iuiv")
+                }
+                let val = f(c"glGetVertexAttribIuiv");
+                if val.is_null() {
+                    get_vertex_attrib_iuiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i1i: unsafe {
+                unsafe extern "system" fn vertex_attrib_i1i(_index: GLuint, _x: GLint) {
+                    panic!("Unable to load vertex_attrib_i1i")
+                }
+                let val = f(c"glVertexAttribI1i");
+                if val.is_null() {
+                    vertex_attrib_i1i
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i2i: unsafe {
+                unsafe extern "system" fn vertex_attrib_i2i(_index: GLuint, _x: GLint, _y: GLint) {
+                    panic!("Unable to load vertex_attrib_i2i")
+                }
+                let val = f(c"glVertexAttribI2i");
+                if val.is_null() {
+                    vertex_attrib_i2i
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i3i: unsafe {
+                unsafe extern "system" fn vertex_attrib_i3i(
+                    _index: GLuint,
+                    _x: GLint,
+                    _y: GLint,
+                    _z: GLint,
+                ) {
+                    panic!("Unable to load vertex_attrib_i3i")
+                }
+                let val = f(c"glVertexAttribI3i");
+                if val.is_null() {
+                    vertex_attrib_i3i
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i4i: unsafe {
+                unsafe extern "system" fn vertex_attrib_i4i(
+                    _index: GLuint,
+                    _x: GLint,
+                    _y: GLint,
+                    _z: GLint,
+                    _w: GLint,
+                ) {
+                    panic!("Unable to load vertex_attrib_i4i")
+                }
+                let val = f(c"glVertexAttribI4i");
+                if val.is_null() {
+                    vertex_attrib_i4i
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i1ui: unsafe {
+                unsafe extern "system" fn vertex_attrib_i1ui(_index: GLuint, _x: GLuint) {
+                    panic!("Unable to load vertex_attrib_i1ui")
+                }
+                let val = f(c"glVertexAttribI1ui");
+                if val.is_null() {
+                    vertex_attrib_i1ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i2ui: unsafe {
+                unsafe extern "system" fn vertex_attrib_i2ui(
+                    _index: GLuint,
+                    _x: GLuint,
+                    _y: GLuint,
+                ) {
+                    panic!("Unable to load vertex_attrib_i2ui")
+                }
+                let val = f(c"glVertexAttribI2ui");
+                if val.is_null() {
+                    vertex_attrib_i2ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i3ui: unsafe {
+                unsafe extern "system" fn vertex_attrib_i3ui(
+                    _index: GLuint,
+                    _x: GLuint,
+                    _y: GLuint,
+                    _z: GLuint,
+                ) {
+                    panic!("Unable to load vertex_attrib_i3ui")
+                }
+                let val = f(c"glVertexAttribI3ui");
+                if val.is_null() {
+                    vertex_attrib_i3ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i4ui: unsafe {
+                unsafe extern "system" fn vertex_attrib_i4ui(
+                    _index: GLuint,
+                    _x: GLuint,
+                    _y: GLuint,
+                    _z: GLuint,
+                    _w: GLuint,
+                ) {
+                    panic!("Unable to load vertex_attrib_i4ui")
+                }
+                let val = f(c"glVertexAttribI4ui");
+                if val.is_null() {
+                    vertex_attrib_i4ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i1iv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i1iv(_index: GLuint, _v: *const GLint) {
+                    panic!("Unable to load vertex_attrib_i1iv")
+                }
+                let val = f(c"glVertexAttribI1iv");
+                if val.is_null() {
+                    vertex_attrib_i1iv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i2iv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i2iv(_index: GLuint, _v: *const GLint) {
+                    panic!("Unable to load vertex_attrib_i2iv")
+                }
+                let val = f(c"glVertexAttribI2iv");
+                if val.is_null() {
+                    vertex_attrib_i2iv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i3iv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i3iv(_index: GLuint, _v: *const GLint) {
+                    panic!("Unable to load vertex_attrib_i3iv")
+                }
+                let val = f(c"glVertexAttribI3iv");
+                if val.is_null() {
+                    vertex_attrib_i3iv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i4iv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i4iv(_index: GLuint, _v: *const GLint) {
+                    panic!("Unable to load vertex_attrib_i4iv")
+                }
+                let val = f(c"glVertexAttribI4iv");
+                if val.is_null() {
+                    vertex_attrib_i4iv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i1uiv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i1uiv(_index: GLuint, _v: *const GLuint) {
+                    panic!("Unable to load vertex_attrib_i1uiv")
+                }
+                let val = f(c"glVertexAttribI1uiv");
+                if val.is_null() {
+                    vertex_attrib_i1uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i2uiv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i2uiv(_index: GLuint, _v: *const GLuint) {
+                    panic!("Unable to load vertex_attrib_i2uiv")
+                }
+                let val = f(c"glVertexAttribI2uiv");
+                if val.is_null() {
+                    vertex_attrib_i2uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i3uiv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i3uiv(_index: GLuint, _v: *const GLuint) {
+                    panic!("Unable to load vertex_attrib_i3uiv")
+                }
+                let val = f(c"glVertexAttribI3uiv");
+                if val.is_null() {
+                    vertex_attrib_i3uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i4uiv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i4uiv(_index: GLuint, _v: *const GLuint) {
+                    panic!("Unable to load vertex_attrib_i4uiv")
+                }
+                let val = f(c"glVertexAttribI4uiv");
+                if val.is_null() {
+                    vertex_attrib_i4uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i4bv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i4bv(_index: GLuint, _v: *const GLbyte) {
+                    panic!("Unable to load vertex_attrib_i4bv")
+                }
+                let val = f(c"glVertexAttribI4bv");
+                if val.is_null() {
+                    vertex_attrib_i4bv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i4sv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i4sv(_index: GLuint, _v: *const GLshort) {
+                    panic!("Unable to load vertex_attrib_i4sv")
+                }
+                let val = f(c"glVertexAttribI4sv");
+                if val.is_null() {
+                    vertex_attrib_i4sv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i4ubv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i4ubv(_index: GLuint, _v: *const GLubyte) {
+                    panic!("Unable to load vertex_attrib_i4ubv")
+                }
+                let val = f(c"glVertexAttribI4ubv");
+                if val.is_null() {
+                    vertex_attrib_i4ubv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_i4usv: unsafe {
+                unsafe extern "system" fn vertex_attrib_i4usv(_index: GLuint, _v: *const GLushort) {
+                    panic!("Unable to load vertex_attrib_i4usv")
+                }
+                let val = f(c"glVertexAttribI4usv");
+                if val.is_null() {
+                    vertex_attrib_i4usv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_uniformuiv: unsafe {
+                unsafe extern "system" fn get_uniformuiv(
+                    _program: GLuint,
+                    _location: GLint,
+                    _params: *mut GLuint,
+                ) {
+                    panic!("Unable to load get_uniformuiv")
+                }
+                let val = f(c"glGetUniformuiv");
+                if val.is_null() {
+                    get_uniformuiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            bind_frag_data_location: unsafe {
+                unsafe extern "system" fn bind_frag_data_location(
+                    _program: GLuint,
+                    _color: GLuint,
+                    _name: *const GLchar,
+                ) {
+                    panic!("Unable to load bind_frag_data_location")
+                }
+                let val = f(c"glBindFragDataLocation");
+                if val.is_null() {
+                    bind_frag_data_location
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_frag_data_location: unsafe {
+                unsafe extern "system" fn get_frag_data_location(
+                    _program: GLuint,
+                    _name: *const GLchar,
+                ) -> GLint {
+                    panic!("Unable to load get_frag_data_location")
+                }
+                let val = f(c"glGetFragDataLocation");
+                if val.is_null() {
+                    get_frag_data_location
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            uniform1ui: unsafe {
+                unsafe extern "system" fn uniform1ui(_location: GLint, _v0: GLuint) {
+                    panic!("Unable to load uniform1ui")
+                }
+                let val = f(c"glUniform1ui");
+                if val.is_null() {
+                    uniform1ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            uniform2ui: unsafe {
+                unsafe extern "system" fn uniform2ui(_location: GLint, _v0: GLuint, _v1: GLuint) {
+                    panic!("Unable to load uniform2ui")
+                }
+                let val = f(c"glUniform2ui");
+                if val.is_null() {
+                    uniform2ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            uniform3ui: unsafe {
+                unsafe extern "system" fn uniform3ui(
+                    _location: GLint,
+                    _v0: GLuint,
+                    _v1: GLuint,
+                    _v2: GLuint,
+                ) {
+                    panic!("Unable to load uniform3ui")
+                }
+                let val = f(c"glUniform3ui");
+                if val.is_null() {
+                    uniform3ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            uniform4ui: unsafe {
+                unsafe extern "system" fn uniform4ui(
+                    _location: GLint,
+                    _v0: GLuint,
+                    _v1: GLuint,
+                    _v2: GLuint,
+                    _v3: GLuint,
+                ) {
+                    panic!("Unable to load uniform4ui")
+                }
+                let val = f(c"glUniform4ui");
+                if val.is_null() {
+                    uniform4ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            uniform1uiv: unsafe {
+                unsafe extern "system" fn uniform1uiv(
+                    _location: GLint,
+                    _count: GLsizei,
+                    _value: *const GLuint,
+                ) {
+                    panic!("Unable to load uniform1uiv")
+                }
+                let val = f(c"glUniform1uiv");
+                if val.is_null() {
+                    uniform1uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            uniform2uiv: unsafe {
+                unsafe extern "system" fn uniform2uiv(
+                    _location: GLint,
+                    _count: GLsizei,
+                    _value: *const GLuint,
+                ) {
+                    panic!("Unable to load uniform2uiv")
+                }
+                let val = f(c"glUniform2uiv");
+                if val.is_null() {
+                    uniform2uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            uniform3uiv: unsafe {
+                unsafe extern "system" fn uniform3uiv(
+                    _location: GLint,
+                    _count: GLsizei,
+                    _value: *const GLuint,
+                ) {
+                    panic!("Unable to load uniform3uiv")
+                }
+                let val = f(c"glUniform3uiv");
+                if val.is_null() {
+                    uniform3uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            uniform4uiv: unsafe {
+                unsafe extern "system" fn uniform4uiv(
+                    _location: GLint,
+                    _count: GLsizei,
+                    _value: *const GLuint,
+                ) {
+                    panic!("Unable to load uniform4uiv")
+                }
+                let val = f(c"glUniform4uiv");
+                if val.is_null() {
+                    uniform4uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            tex_parameter_iiv: unsafe {
+                unsafe extern "system" fn tex_parameter_iiv(
+                    _target: GLenum,
+                    _pname: GLenum,
+                    _params: *const GLint,
+                ) {
+                    panic!("Unable to load tex_parameter_iiv")
+                }
+                let val = f(c"glTexParameterIiv");
+                if val.is_null() {
+                    tex_parameter_iiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            tex_parameter_iuiv: unsafe {
+                unsafe extern "system" fn tex_parameter_iuiv(
+                    _target: GLenum,
+                    _pname: GLenum,
+                    _params: *const GLuint,
+                ) {
+                    panic!("Unable to load tex_parameter_iuiv")
+                }
+                let val = f(c"glTexParameterIuiv");
+                if val.is_null() {
+                    tex_parameter_iuiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_tex_parameter_iiv: unsafe {
+                unsafe extern "system" fn get_tex_parameter_iiv(
+                    _target: GLenum,
+                    _pname: GLenum,
+                    _params: *mut GLint,
+                ) {
+                    panic!("Unable to load get_tex_parameter_iiv")
+                }
+                let val = f(c"glGetTexParameterIiv");
+                if val.is_null() {
+                    get_tex_parameter_iiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_tex_parameter_iuiv: unsafe {
+                unsafe extern "system" fn get_tex_parameter_iuiv(
+                    _target: GLenum,
+                    _pname: GLenum,
+                    _params: *mut GLuint,
+                ) {
+                    panic!("Unable to load get_tex_parameter_iuiv")
+                }
+                let val = f(c"glGetTexParameterIuiv");
+                if val.is_null() {
+                    get_tex_parameter_iuiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            clear_bufferiv: unsafe {
+                unsafe extern "system" fn clear_bufferiv(
+                    _buffer: GLenum,
+                    _drawbuffer: GLint,
+                    _value: *const GLint,
+                ) {
+                    panic!("Unable to load clear_bufferiv")
+                }
+                let val = f(c"glClearBufferiv");
+                if val.is_null() {
+                    clear_bufferiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            clear_bufferuiv: unsafe {
+                unsafe extern "system" fn clear_bufferuiv(
+                    _buffer: GLenum,
+                    _drawbuffer: GLint,
+                    _value: *const GLuint,
+                ) {
+                    panic!("Unable to load clear_bufferuiv")
+                }
+                let val = f(c"glClearBufferuiv");
+                if val.is_null() {
+                    clear_bufferuiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            clear_bufferfv: unsafe {
+                unsafe extern "system" fn clear_bufferfv(
+                    _buffer: GLenum,
+                    _drawbuffer: GLint,
+                    _value: *const GLfloat,
+                ) {
+                    panic!("Unable to load clear_bufferfv")
+                }
+                let val = f(c"glClearBufferfv");
+                if val.is_null() {
+                    clear_bufferfv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            clear_bufferfi: unsafe {
+                unsafe extern "system" fn clear_bufferfi(
+                    _buffer: GLenum,
+                    _drawbuffer: GLint,
+                    _depth: GLfloat,
+                    _stencil: GLint,
+                ) {
+                    panic!("Unable to load clear_bufferfi")
+                }
+                let val = f(c"glClearBufferfi");
+                if val.is_null() {
+                    clear_bufferfi
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_stringi: unsafe {
+                unsafe extern "system" fn get_stringi(
+                    _name: GLenum,
+                    _index: GLuint,
+                ) -> *const GLubyte {
+                    panic!("Unable to load get_stringi")
+                }
+                let val = f(c"glGetStringi");
+                if val.is_null() {
+                    get_stringi
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            is_renderbuffer: unsafe {
+                unsafe extern "system" fn is_renderbuffer(_renderbuffer: GLuint) -> GLboolean {
+                    panic!("Unable to load is_renderbuffer")
+                }
+                let val = f(c"glIsRenderbuffer");
+                if val.is_null() {
+                    is_renderbuffer
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            bind_renderbuffer: unsafe {
+                unsafe extern "system" fn bind_renderbuffer(
+                    _target: GLenum,
+                    _renderbuffer: GLuint,
+                ) {
+                    panic!("Unable to load bind_renderbuffer")
+                }
+                let val = f(c"glBindRenderbuffer");
+                if val.is_null() {
+                    bind_renderbuffer
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            delete_renderbuffers: unsafe {
+                unsafe extern "system" fn delete_renderbuffers(
+                    _n: GLsizei,
+                    _renderbuffers: *const GLuint,
+                ) {
+                    panic!("Unable to load delete_renderbuffers")
+                }
+                let val = f(c"glDeleteRenderbuffers");
+                if val.is_null() {
+                    delete_renderbuffers
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            gen_renderbuffers: unsafe {
+                unsafe extern "system" fn gen_renderbuffers(
+                    _n: GLsizei,
+                    _renderbuffers: *mut GLuint,
+                ) {
+                    panic!("Unable to load gen_renderbuffers")
+                }
+                let val = f(c"glGenRenderbuffers");
+                if val.is_null() {
+                    gen_renderbuffers
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            renderbuffer_storage: unsafe {
+                unsafe extern "system" fn renderbuffer_storage(
+                    _target: GLenum,
+                    _internalformat: GLenum,
+                    _width: GLsizei,
+                    _height: GLsizei,
+                ) {
+                    panic!("Unable to load renderbuffer_storage")
+                }
+                let val = f(c"glRenderbufferStorage");
+                if val.is_null() {
+                    renderbuffer_storage
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_renderbuffer_parameteriv: unsafe {
+                unsafe extern "system" fn get_renderbuffer_parameteriv(
+                    _target: GLenum,
+                    _pname: GLenum,
+                    _params: *mut GLint,
+                ) {
+                    panic!("Unable to load get_renderbuffer_parameteriv")
+                }
+                let val = f(c"glGetRenderbufferParameteriv");
+                if val.is_null() {
+                    get_renderbuffer_parameteriv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            is_framebuffer: unsafe {
+                unsafe extern "system" fn is_framebuffer(_framebuffer: GLuint) -> GLboolean {
+                    panic!("Unable to load is_framebuffer")
+                }
+                let val = f(c"glIsFramebuffer");
+                if val.is_null() {
+                    is_framebuffer
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            bind_framebuffer: unsafe {
+                unsafe extern "system" fn bind_framebuffer(_target: GLenum, _framebuffer: GLuint) {
+                    panic!("Unable to load bind_framebuffer")
+                }
+                let val = f(c"glBindFramebuffer");
+                if val.is_null() {
+                    bind_framebuffer
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            delete_framebuffers: unsafe {
+                unsafe extern "system" fn delete_framebuffers(
+                    _n: GLsizei,
+                    _framebuffers: *const GLuint,
+                ) {
+                    panic!("Unable to load delete_framebuffers")
+                }
+                let val = f(c"glDeleteFramebuffers");
+                if val.is_null() {
+                    delete_framebuffers
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            gen_framebuffers: unsafe {
+                unsafe extern "system" fn gen_framebuffers(
+                    _n: GLsizei,
+                    _framebuffers: *mut GLuint,
+                ) {
+                    panic!("Unable to load gen_framebuffers")
+                }
+                let val = f(c"glGenFramebuffers");
+                if val.is_null() {
+                    gen_framebuffers
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            check_framebuffer_status: unsafe {
+                unsafe extern "system" fn check_framebuffer_status(_target: GLenum) -> GLenum {
+                    panic!("Unable to load check_framebuffer_status")
+                }
+                let val = f(c"glCheckFramebufferStatus");
+                if val.is_null() {
+                    check_framebuffer_status
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            framebuffer_texture_1d: unsafe {
+                unsafe extern "system" fn framebuffer_texture_1d(
+                    _target: GLenum,
+                    _attachment: GLenum,
+                    _textarget: GLenum,
+                    _texture: GLuint,
+                    _level: GLint,
+                ) {
+                    panic!("Unable to load framebuffer_texture_1d")
+                }
+                let val = f(c"glFramebufferTexture1D");
+                if val.is_null() {
+                    framebuffer_texture_1d
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            framebuffer_texture_2d: unsafe {
+                unsafe extern "system" fn framebuffer_texture_2d(
+                    _target: GLenum,
+                    _attachment: GLenum,
+                    _textarget: GLenum,
+                    _texture: GLuint,
+                    _level: GLint,
+                ) {
+                    panic!("Unable to load framebuffer_texture_2d")
+                }
+                let val = f(c"glFramebufferTexture2D");
+                if val.is_null() {
+                    framebuffer_texture_2d
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            framebuffer_texture_3d: unsafe {
+                unsafe extern "system" fn framebuffer_texture_3d(
+                    _target: GLenum,
+                    _attachment: GLenum,
+                    _textarget: GLenum,
+                    _texture: GLuint,
+                    _level: GLint,
+                    _zoffset: GLint,
+                ) {
+                    panic!("Unable to load framebuffer_texture_3d")
+                }
+                let val = f(c"glFramebufferTexture3D");
+                if val.is_null() {
+                    framebuffer_texture_3d
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            framebuffer_renderbuffer: unsafe {
+                unsafe extern "system" fn framebuffer_renderbuffer(
+                    _target: GLenum,
+                    _attachment: GLenum,
+                    _renderbuffertarget: GLenum,
+                    _renderbuffer: GLuint,
+                ) {
+                    panic!("Unable to load framebuffer_renderbuffer")
+                }
+                let val = f(c"glFramebufferRenderbuffer");
+                if val.is_null() {
+                    framebuffer_renderbuffer
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_framebuffer_attachment_parameteriv: unsafe {
+                unsafe extern "system" fn get_framebuffer_attachment_parameteriv(
+                    _target: GLenum,
+                    _attachment: GLenum,
+                    _pname: GLenum,
+                    _params: *mut GLint,
+                ) {
+                    panic!("Unable to load get_framebuffer_attachment_parameteriv")
+                }
+                let val = f(c"glGetFramebufferAttachmentParameteriv");
+                if val.is_null() {
+                    get_framebuffer_attachment_parameteriv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            generate_mipmap: unsafe {
+                unsafe extern "system" fn generate_mipmap(_target: GLenum) {
+                    panic!("Unable to load generate_mipmap")
+                }
+                let val = f(c"glGenerateMipmap");
+                if val.is_null() {
+                    generate_mipmap
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            blit_framebuffer: unsafe {
+                unsafe extern "system" fn blit_framebuffer(
+                    _src_x0: GLint,
+                    _src_y0: GLint,
+                    _src_x1: GLint,
+                    _src_y1: GLint,
+                    _dst_x0: GLint,
+                    _dst_y0: GLint,
+                    _dst_x1: GLint,
+                    _dst_y1: GLint,
+                    _mask: GLbitfield,
+                    _filter: GLenum,
+                ) {
+                    panic!("Unable to load blit_framebuffer")
+                }
+                let val = f(c"glBlitFramebuffer");
+                if val.is_null() {
+                    blit_framebuffer
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            renderbuffer_storage_multisample: unsafe {
+                unsafe extern "system" fn renderbuffer_storage_multisample(
+                    _target: GLenum,
+                    _samples: GLsizei,
+                    _internalformat: GLenum,
+                    _width: GLsizei,
+                    _height: GLsizei,
+                ) {
+                    panic!("Unable to load renderbuffer_storage_multisample")
+                }
+                let val = f(c"glRenderbufferStorageMultisample");
+                if val.is_null() {
+                    renderbuffer_storage_multisample
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            framebuffer_texture_layer: unsafe {
+                unsafe extern "system" fn framebuffer_texture_layer(
+                    _target: GLenum,
+                    _attachment: GLenum,
+                    _texture: GLuint,
+                    _level: GLint,
+                    _layer: GLint,
+                ) {
+                    panic!("Unable to load framebuffer_texture_layer")
+                }
+                let val = f(c"glFramebufferTextureLayer");
+                if val.is_null() {
+                    framebuffer_texture_layer
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            map_buffer_range: unsafe {
+                unsafe extern "system" fn map_buffer_range(
+                    _target: GLenum,
+                    _offset: GLintptr,
+                    _length: GLsizeiptr,
+                    _access: GLbitfield,
+                ) -> *mut c_void {
+                    panic!("Unable to load map_buffer_range")
+                }
+                let val = f(c"glMapBufferRange");
+                if val.is_null() {
+                    map_buffer_range
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            flush_mapped_buffer_range: unsafe {
+                unsafe extern "system" fn flush_mapped_buffer_range(
+                    _target: GLenum,
+                    _offset: GLintptr,
+                    _length: GLsizeiptr,
+                ) {
+                    panic!("Unable to load flush_mapped_buffer_range")
+                }
+                let val = f(c"glFlushMappedBufferRange");
+                if val.is_null() {
+                    flush_mapped_buffer_range
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            bind_vertex_array: unsafe {
+                unsafe extern "system" fn bind_vertex_array(_array: GLuint) {
+                    panic!("Unable to load bind_vertex_array")
+                }
+                let val = f(c"glBindVertexArray");
+                if val.is_null() {
+                    bind_vertex_array
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            delete_vertex_arrays: unsafe {
+                unsafe extern "system" fn delete_vertex_arrays(
+                    _n: GLsizei,
+                    _arrays: *const GLuint,
+                ) {
+                    panic!("Unable to load delete_vertex_arrays")
+                }
+                let val = f(c"glDeleteVertexArrays");
+                if val.is_null() {
+                    delete_vertex_arrays
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            gen_vertex_arrays: unsafe {
+                unsafe extern "system" fn gen_vertex_arrays(_n: GLsizei, _arrays: *mut GLuint) {
+                    panic!("Unable to load gen_vertex_arrays")
+                }
+                let val = f(c"glGenVertexArrays");
+                if val.is_null() {
+                    gen_vertex_arrays
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            is_vertex_array: unsafe {
+                unsafe extern "system" fn is_vertex_array(_array: GLuint) -> GLboolean {
+                    panic!("Unable to load is_vertex_array")
+                }
+                let val = f(c"glIsVertexArray");
+                if val.is_null() {
+                    is_vertex_array
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            draw_arrays_instanced: unsafe {
+                unsafe extern "system" fn draw_arrays_instanced(
+                    _mode: GLenum,
+                    _first: GLint,
+                    _count: GLsizei,
+                    _instancecount: GLsizei,
+                ) {
+                    panic!("Unable to load draw_arrays_instanced")
+                }
+                let val = f(c"glDrawArraysInstanced");
+                if val.is_null() {
+                    draw_arrays_instanced
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            draw_elements_instanced: unsafe {
+                unsafe extern "system" fn draw_elements_instanced(
+                    _mode: GLenum,
+                    _count: GLsizei,
+                    _type: GLenum,
+                    _indices: *const c_void,
+                    _instancecount: GLsizei,
+                ) {
+                    panic!("Unable to load draw_elements_instanced")
+                }
+                let val = f(c"glDrawElementsInstanced");
+                if val.is_null() {
+                    draw_elements_instanced
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            tex_buffer: unsafe {
+                unsafe extern "system" fn tex_buffer(
+                    _target: GLenum,
+                    _internalformat: GLenum,
+                    _buffer: GLuint,
+                ) {
+                    panic!("Unable to load tex_buffer")
+                }
+                let val = f(c"glTexBuffer");
+                if val.is_null() {
+                    tex_buffer
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            primitive_restart_index: unsafe {
+                unsafe extern "system" fn primitive_restart_index(_index: GLuint) {
+                    panic!("Unable to load primitive_restart_index")
+                }
+                let val = f(c"glPrimitiveRestartIndex");
+                if val.is_null() {
+                    primitive_restart_index
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            copy_buffer_sub_data: unsafe {
+                unsafe extern "system" fn copy_buffer_sub_data(
+                    _read_target: GLenum,
+                    _write_target: GLenum,
+                    _read_offset: GLintptr,
+                    _write_offset: GLintptr,
+                    _size: GLsizeiptr,
+                ) {
+                    panic!("Unable to load copy_buffer_sub_data")
+                }
+                let val = f(c"glCopyBufferSubData");
+                if val.is_null() {
+                    copy_buffer_sub_data
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_uniform_indices: unsafe {
+                unsafe extern "system" fn get_uniform_indices(
+                    _program: GLuint,
+                    _uniform_count: GLsizei,
+                    _uniform_names: *const *const GLchar,
+                    _uniform_indices: *mut GLuint,
+                ) {
+                    panic!("Unable to load get_uniform_indices")
+                }
+                let val = f(c"glGetUniformIndices");
+                if val.is_null() {
+                    get_uniform_indices
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_active_uniformsiv: unsafe {
+                unsafe extern "system" fn get_active_uniformsiv(
+                    _program: GLuint,
+                    _uniform_count: GLsizei,
+                    _uniform_indices: *const GLuint,
+                    _pname: GLenum,
+                    _params: *mut GLint,
+                ) {
+                    panic!("Unable to load get_active_uniformsiv")
+                }
+                let val = f(c"glGetActiveUniformsiv");
+                if val.is_null() {
+                    get_active_uniformsiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_active_uniform_name: unsafe {
+                unsafe extern "system" fn get_active_uniform_name(
+                    _program: GLuint,
+                    _uniform_index: GLuint,
+                    _buf_size: GLsizei,
+                    _length: *mut GLsizei,
+                    _uniform_name: *mut GLchar,
+                ) {
+                    panic!("Unable to load get_active_uniform_name")
+                }
+                let val = f(c"glGetActiveUniformName");
+                if val.is_null() {
+                    get_active_uniform_name
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_uniform_block_index: unsafe {
+                unsafe extern "system" fn get_uniform_block_index(
+                    _program: GLuint,
+                    _uniform_block_name: *const GLchar,
+                ) -> GLuint {
+                    panic!("Unable to load get_uniform_block_index")
+                }
+                let val = f(c"glGetUniformBlockIndex");
+                if val.is_null() {
+                    get_uniform_block_index
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_active_uniform_blockiv: unsafe {
+                unsafe extern "system" fn get_active_uniform_blockiv(
+                    _program: GLuint,
+                    _uniform_block_index: GLuint,
+                    _pname: GLenum,
+                    _params: *mut GLint,
+                ) {
+                    panic!("Unable to load get_active_uniform_blockiv")
+                }
+                let val = f(c"glGetActiveUniformBlockiv");
+                if val.is_null() {
+                    get_active_uniform_blockiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_active_uniform_block_name: unsafe {
+                unsafe extern "system" fn get_active_uniform_block_name(
+                    _program: GLuint,
+                    _uniform_block_index: GLuint,
+                    _buf_size: GLsizei,
+                    _length: *mut GLsizei,
+                    _uniform_block_name: *mut GLchar,
+                ) {
+                    panic!("Unable to load get_active_uniform_block_name")
+                }
+                let val = f(c"glGetActiveUniformBlockName");
+                if val.is_null() {
+                    get_active_uniform_block_name
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            uniform_block_binding: unsafe {
+                unsafe extern "system" fn uniform_block_binding(
+                    _program: GLuint,
+                    _uniform_block_index: GLuint,
+                    _uniform_block_binding: GLuint,
+                ) {
+                    panic!("Unable to load uniform_block_binding")
+                }
+                let val = f(c"glUniformBlockBinding");
+                if val.is_null() {
+                    uniform_block_binding
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            draw_elements_base_vertex: unsafe {
+                unsafe extern "system" fn draw_elements_base_vertex(
+                    _mode: GLenum,
+                    _count: GLsizei,
+                    _type: GLenum,
+                    _indices: *const c_void,
+                    _basevertex: GLint,
+                ) {
+                    panic!("Unable to load draw_elements_base_vertex")
+                }
+                let val = f(c"glDrawElementsBaseVertex");
+                if val.is_null() {
+                    draw_elements_base_vertex
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            draw_range_elements_base_vertex: unsafe {
+                unsafe extern "system" fn draw_range_elements_base_vertex(
+                    _mode: GLenum,
+                    _start: GLuint,
+                    _end: GLuint,
+                    _count: GLsizei,
+                    _type: GLenum,
+                    _indices: *const c_void,
+                    _basevertex: GLint,
+                ) {
+                    panic!("Unable to load draw_range_elements_base_vertex")
+                }
+                let val = f(c"glDrawRangeElementsBaseVertex");
+                if val.is_null() {
+                    draw_range_elements_base_vertex
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            draw_elements_instanced_base_vertex: unsafe {
+                unsafe extern "system" fn draw_elements_instanced_base_vertex(
+                    _mode: GLenum,
+                    _count: GLsizei,
+                    _type: GLenum,
+                    _indices: *const c_void,
+                    _instancecount: GLsizei,
+                    _basevertex: GLint,
+                ) {
+                    panic!("Unable to load draw_elements_instanced_base_vertex")
+                }
+                let val = f(c"glDrawElementsInstancedBaseVertex");
+                if val.is_null() {
+                    draw_elements_instanced_base_vertex
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            multi_draw_elements_base_vertex: unsafe {
+                unsafe extern "system" fn multi_draw_elements_base_vertex(
+                    _mode: GLenum,
+                    _count: *const GLsizei,
+                    _type: GLenum,
+                    _indices: *const *const c_void,
+                    _drawcount: GLsizei,
+                    _basevertex: *const GLint,
+                ) {
+                    panic!("Unable to load multi_draw_elements_base_vertex")
+                }
+                let val = f(c"glMultiDrawElementsBaseVertex");
+                if val.is_null() {
+                    multi_draw_elements_base_vertex
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            provoking_vertex: unsafe {
+                unsafe extern "system" fn provoking_vertex(_mode: GLenum) {
+                    panic!("Unable to load provoking_vertex")
+                }
+                let val = f(c"glProvokingVertex");
+                if val.is_null() {
+                    provoking_vertex
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            fence_sync: unsafe {
+                unsafe extern "system" fn fence_sync(
+                    _condition: GLenum,
+                    _flags: GLbitfield,
+                ) -> GLsync {
+                    panic!("Unable to load fence_sync")
+                }
+                let val = f(c"glFenceSync");
+                if val.is_null() {
+                    fence_sync
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            is_sync: unsafe {
+                unsafe extern "system" fn is_sync(_sync: GLsync) -> GLboolean {
+                    panic!("Unable to load is_sync")
+                }
+                let val = f(c"glIsSync");
+                if val.is_null() {
+                    is_sync
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            delete_sync: unsafe {
+                unsafe extern "system" fn delete_sync(_sync: GLsync) {
+                    panic!("Unable to load delete_sync")
+                }
+                let val = f(c"glDeleteSync");
+                if val.is_null() {
+                    delete_sync
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            client_wait_sync: unsafe {
+                unsafe extern "system" fn client_wait_sync(
+                    _sync: GLsync,
+                    _flags: GLbitfield,
+                    _timeout: GLuint64,
+                ) -> GLenum {
+                    panic!("Unable to load client_wait_sync")
+                }
+                let val = f(c"glClientWaitSync");
+                if val.is_null() {
+                    client_wait_sync
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            wait_sync: unsafe {
+                unsafe extern "system" fn wait_sync(
+                    _sync: GLsync,
+                    _flags: GLbitfield,
+                    _timeout: GLuint64,
+                ) {
+                    panic!("Unable to load wait_sync")
+                }
+                let val = f(c"glWaitSync");
+                if val.is_null() {
+                    wait_sync
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_integer64v: unsafe {
+                unsafe extern "system" fn get_integer64v(_pname: GLenum, _data: *mut GLint64) {
+                    panic!("Unable to load get_integer64v")
+                }
+                let val = f(c"glGetInteger64v");
+                if val.is_null() {
+                    get_integer64v
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_synciv: unsafe {
+                unsafe extern "system" fn get_synciv(
+                    _sync: GLsync,
+                    _pname: GLenum,
+                    _count: GLsizei,
+                    _length: *mut GLsizei,
+                    _values: *mut GLint,
+                ) {
+                    panic!("Unable to load get_synciv")
+                }
+                let val = f(c"glGetSynciv");
+                if val.is_null() {
+                    get_synciv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_integer64i_v: unsafe {
+                unsafe extern "system" fn get_integer64i_v(
+                    _target: GLenum,
+                    _index: GLuint,
+                    _data: *mut GLint64,
+                ) {
+                    panic!("Unable to load get_integer64i_v")
+                }
+                let val = f(c"glGetInteger64i_v");
+                if val.is_null() {
+                    get_integer64i_v
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_buffer_parameteri64v: unsafe {
+                unsafe extern "system" fn get_buffer_parameteri64v(
+                    _target: GLenum,
+                    _pname: GLenum,
+                    _params: *mut GLint64,
+                ) {
+                    panic!("Unable to load get_buffer_parameteri64v")
+                }
+                let val = f(c"glGetBufferParameteri64v");
+                if val.is_null() {
+                    get_buffer_parameteri64v
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            framebuffer_texture: unsafe {
+                unsafe extern "system" fn framebuffer_texture(
+                    _target: GLenum,
+                    _attachment: GLenum,
+                    _texture: GLuint,
+                    _level: GLint,
+                ) {
+                    panic!("Unable to load framebuffer_texture")
+                }
+                let val = f(c"glFramebufferTexture");
+                if val.is_null() {
+                    framebuffer_texture
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            tex_image_2dmultisample: unsafe {
+                unsafe extern "system" fn tex_image_2dmultisample(
+                    _target: GLenum,
+                    _samples: GLsizei,
+                    _internalformat: GLenum,
+                    _width: GLsizei,
+                    _height: GLsizei,
+                    _fixedsamplelocations: GLboolean,
+                ) {
+                    panic!("Unable to load tex_image_2dmultisample")
+                }
+                let val = f(c"glTexImage2DMultisample");
+                if val.is_null() {
+                    tex_image_2dmultisample
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            tex_image_3dmultisample: unsafe {
+                unsafe extern "system" fn tex_image_3dmultisample(
+                    _target: GLenum,
+                    _samples: GLsizei,
+                    _internalformat: GLenum,
+                    _width: GLsizei,
+                    _height: GLsizei,
+                    _depth: GLsizei,
+                    _fixedsamplelocations: GLboolean,
+                ) {
+                    panic!("Unable to load tex_image_3dmultisample")
+                }
+                let val = f(c"glTexImage3DMultisample");
+                if val.is_null() {
+                    tex_image_3dmultisample
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_multisamplefv: unsafe {
+                unsafe extern "system" fn get_multisamplefv(
+                    _pname: GLenum,
+                    _index: GLuint,
+                    _val: *mut GLfloat,
+                ) {
+                    panic!("Unable to load get_multisamplefv")
+                }
+                let val = f(c"glGetMultisamplefv");
+                if val.is_null() {
+                    get_multisamplefv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            sample_maski: unsafe {
+                unsafe extern "system" fn sample_maski(_mask_number: GLuint, _mask: GLbitfield) {
+                    panic!("Unable to load sample_maski")
+                }
+                let val = f(c"glSampleMaski");
+                if val.is_null() {
+                    sample_maski
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            bind_frag_data_location_indexed: unsafe {
+                unsafe extern "system" fn bind_frag_data_location_indexed(
+                    _program: GLuint,
+                    _color_number: GLuint,
+                    _index: GLuint,
+                    _name: *const GLchar,
+                ) {
+                    panic!("Unable to load bind_frag_data_location_indexed")
+                }
+                let val = f(c"glBindFragDataLocationIndexed");
+                if val.is_null() {
+                    bind_frag_data_location_indexed
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_frag_data_index: unsafe {
+                unsafe extern "system" fn get_frag_data_index(
+                    _program: GLuint,
+                    _name: *const GLchar,
+                ) -> GLint {
+                    panic!("Unable to load get_frag_data_index")
+                }
+                let val = f(c"glGetFragDataIndex");
+                if val.is_null() {
+                    get_frag_data_index
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            gen_samplers: unsafe {
+                unsafe extern "system" fn gen_samplers(_count: GLsizei, _samplers: *mut GLuint) {
+                    panic!("Unable to load gen_samplers")
+                }
+                let val = f(c"glGenSamplers");
+                if val.is_null() {
+                    gen_samplers
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            delete_samplers: unsafe {
+                unsafe extern "system" fn delete_samplers(
+                    _count: GLsizei,
+                    _samplers: *const GLuint,
+                ) {
+                    panic!("Unable to load delete_samplers")
+                }
+                let val = f(c"glDeleteSamplers");
+                if val.is_null() {
+                    delete_samplers
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            is_sampler: unsafe {
+                unsafe extern "system" fn is_sampler(_sampler: GLuint) -> GLboolean {
+                    panic!("Unable to load is_sampler")
+                }
+                let val = f(c"glIsSampler");
+                if val.is_null() {
+                    is_sampler
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            bind_sampler: unsafe {
+                unsafe extern "system" fn bind_sampler(_unit: GLuint, _sampler: GLuint) {
+                    panic!("Unable to load bind_sampler")
+                }
+                let val = f(c"glBindSampler");
+                if val.is_null() {
+                    bind_sampler
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            sampler_parameteri: unsafe {
+                unsafe extern "system" fn sampler_parameteri(
+                    _sampler: GLuint,
+                    _pname: GLenum,
+                    _param: GLint,
+                ) {
+                    panic!("Unable to load sampler_parameteri")
+                }
+                let val = f(c"glSamplerParameteri");
+                if val.is_null() {
+                    sampler_parameteri
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            sampler_parameteriv: unsafe {
+                unsafe extern "system" fn sampler_parameteriv(
+                    _sampler: GLuint,
+                    _pname: GLenum,
+                    _param: *const GLint,
+                ) {
+                    panic!("Unable to load sampler_parameteriv")
+                }
+                let val = f(c"glSamplerParameteriv");
+                if val.is_null() {
+                    sampler_parameteriv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            sampler_parameterf: unsafe {
+                unsafe extern "system" fn sampler_parameterf(
+                    _sampler: GLuint,
+                    _pname: GLenum,
+                    _param: GLfloat,
+                ) {
+                    panic!("Unable to load sampler_parameterf")
+                }
+                let val = f(c"glSamplerParameterf");
+                if val.is_null() {
+                    sampler_parameterf
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            sampler_parameterfv: unsafe {
+                unsafe extern "system" fn sampler_parameterfv(
+                    _sampler: GLuint,
+                    _pname: GLenum,
+                    _param: *const GLfloat,
+                ) {
+                    panic!("Unable to load sampler_parameterfv")
+                }
+                let val = f(c"glSamplerParameterfv");
+                if val.is_null() {
+                    sampler_parameterfv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            sampler_parameter_iiv: unsafe {
+                unsafe extern "system" fn sampler_parameter_iiv(
+                    _sampler: GLuint,
+                    _pname: GLenum,
+                    _param: *const GLint,
+                ) {
+                    panic!("Unable to load sampler_parameter_iiv")
+                }
+                let val = f(c"glSamplerParameterIiv");
+                if val.is_null() {
+                    sampler_parameter_iiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            sampler_parameter_iuiv: unsafe {
+                unsafe extern "system" fn sampler_parameter_iuiv(
+                    _sampler: GLuint,
+                    _pname: GLenum,
+                    _param: *const GLuint,
+                ) {
+                    panic!("Unable to load sampler_parameter_iuiv")
+                }
+                let val = f(c"glSamplerParameterIuiv");
+                if val.is_null() {
+                    sampler_parameter_iuiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_sampler_parameteriv: unsafe {
+                unsafe extern "system" fn get_sampler_parameteriv(
+                    _sampler: GLuint,
+                    _pname: GLenum,
+                    _params: *mut GLint,
+                ) {
+                    panic!("Unable to load get_sampler_parameteriv")
+                }
+                let val = f(c"glGetSamplerParameteriv");
+                if val.is_null() {
+                    get_sampler_parameteriv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_sampler_parameter_iiv: unsafe {
+                unsafe extern "system" fn get_sampler_parameter_iiv(
+                    _sampler: GLuint,
+                    _pname: GLenum,
+                    _params: *mut GLint,
+                ) {
+                    panic!("Unable to load get_sampler_parameter_iiv")
+                }
+                let val = f(c"glGetSamplerParameterIiv");
+                if val.is_null() {
+                    get_sampler_parameter_iiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_sampler_parameterfv: unsafe {
+                unsafe extern "system" fn get_sampler_parameterfv(
+                    _sampler: GLuint,
+                    _pname: GLenum,
+                    _params: *mut GLfloat,
+                ) {
+                    panic!("Unable to load get_sampler_parameterfv")
+                }
+                let val = f(c"glGetSamplerParameterfv");
+                if val.is_null() {
+                    get_sampler_parameterfv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_sampler_parameter_iuiv: unsafe {
+                unsafe extern "system" fn get_sampler_parameter_iuiv(
+                    _sampler: GLuint,
+                    _pname: GLenum,
+                    _params: *mut GLuint,
+                ) {
+                    panic!("Unable to load get_sampler_parameter_iuiv")
+                }
+                let val = f(c"glGetSamplerParameterIuiv");
+                if val.is_null() {
+                    get_sampler_parameter_iuiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            query_counter: unsafe {
+                unsafe extern "system" fn query_counter(_id: GLuint, _target: GLenum) {
+                    panic!("Unable to load query_counter")
+                }
+                let val = f(c"glQueryCounter");
+                if val.is_null() {
+                    query_counter
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_query_objecti64v: unsafe {
+                unsafe extern "system" fn get_query_objecti64v(
+                    _id: GLuint,
+                    _pname: GLenum,
+                    _params: *mut GLint64,
+                ) {
+                    panic!("Unable to load get_query_objecti64v")
+                }
+                let val = f(c"glGetQueryObjecti64v");
+                if val.is_null() {
+                    get_query_objecti64v
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            get_query_objectui64v: unsafe {
+                unsafe extern "system" fn get_query_objectui64v(
+                    _id: GLuint,
+                    _pname: GLenum,
+                    _params: *mut GLuint64,
+                ) {
+                    panic!("Unable to load get_query_objectui64v")
+                }
+                let val = f(c"glGetQueryObjectui64v");
+                if val.is_null() {
+                    get_query_objectui64v
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_divisor: unsafe {
+                unsafe extern "system" fn vertex_attrib_divisor(_index: GLuint, _divisor: GLuint) {
+                    panic!("Unable to load vertex_attrib_divisor")
+                }
+                let val = f(c"glVertexAttribDivisor");
+                if val.is_null() {
+                    vertex_attrib_divisor
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_p1ui: unsafe {
+                unsafe extern "system" fn vertex_attrib_p1ui(
+                    _index: GLuint,
+                    _type: GLenum,
+                    _normalized: GLboolean,
+                    _value: GLuint,
+                ) {
+                    panic!("Unable to load vertex_attrib_p1ui")
+                }
+                let val = f(c"glVertexAttribP1ui");
+                if val.is_null() {
+                    vertex_attrib_p1ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_p1uiv: unsafe {
+                unsafe extern "system" fn vertex_attrib_p1uiv(
+                    _index: GLuint,
+                    _type: GLenum,
+                    _normalized: GLboolean,
+                    _value: *const GLuint,
+                ) {
+                    panic!("Unable to load vertex_attrib_p1uiv")
+                }
+                let val = f(c"glVertexAttribP1uiv");
+                if val.is_null() {
+                    vertex_attrib_p1uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_p2ui: unsafe {
+                unsafe extern "system" fn vertex_attrib_p2ui(
+                    _index: GLuint,
+                    _type: GLenum,
+                    _normalized: GLboolean,
+                    _value: GLuint,
+                ) {
+                    panic!("Unable to load vertex_attrib_p2ui")
+                }
+                let val = f(c"glVertexAttribP2ui");
+                if val.is_null() {
+                    vertex_attrib_p2ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_p2uiv: unsafe {
+                unsafe extern "system" fn vertex_attrib_p2uiv(
+                    _index: GLuint,
+                    _type: GLenum,
+                    _normalized: GLboolean,
+                    _value: *const GLuint,
+                ) {
+                    panic!("Unable to load vertex_attrib_p2uiv")
+                }
+                let val = f(c"glVertexAttribP2uiv");
+                if val.is_null() {
+                    vertex_attrib_p2uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_p3ui: unsafe {
+                unsafe extern "system" fn vertex_attrib_p3ui(
+                    _index: GLuint,
+                    _type: GLenum,
+                    _normalized: GLboolean,
+                    _value: GLuint,
+                ) {
+                    panic!("Unable to load vertex_attrib_p3ui")
+                }
+                let val = f(c"glVertexAttribP3ui");
+                if val.is_null() {
+                    vertex_attrib_p3ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_p3uiv: unsafe {
+                unsafe extern "system" fn vertex_attrib_p3uiv(
+                    _index: GLuint,
+                    _type: GLenum,
+                    _normalized: GLboolean,
+                    _value: *const GLuint,
+                ) {
+                    panic!("Unable to load vertex_attrib_p3uiv")
+                }
+                let val = f(c"glVertexAttribP3uiv");
+                if val.is_null() {
+                    vertex_attrib_p3uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_p4ui: unsafe {
+                unsafe extern "system" fn vertex_attrib_p4ui(
+                    _index: GLuint,
+                    _type: GLenum,
+                    _normalized: GLboolean,
+                    _value: GLuint,
+                ) {
+                    panic!("Unable to load vertex_attrib_p4ui")
+                }
+                let val = f(c"glVertexAttribP4ui");
+                if val.is_null() {
+                    vertex_attrib_p4ui
+                } else {
+                    mem::transmute(val)
+                }
+            },
+            vertex_attrib_p4uiv: unsafe {
+                unsafe extern "system" fn vertex_attrib_p4uiv(
+                    _index: GLuint,
+                    _type: GLenum,
+                    _normalized: GLboolean,
+                    _value: *const GLuint,
+                ) {
+                    panic!("Unable to load vertex_attrib_p4uiv")
+                }
+                let val = f(c"glVertexAttribP4uiv");
+                if val.is_null() {
+                    vertex_attrib_p4uiv
+                } else {
+                    mem::transmute(val)
+                }
+            },
         }
     }
     #[inline]
@@ -5401,5 +8407,1014 @@ impl Gl {
         value: *const GLfloat,
     ) {
         unsafe { (self.uniform_matrix4x3fv)(location, count, transpose, value) }
+    }
+    #[inline]
+    pub unsafe fn color_maski(
+        &self,
+        index: GLuint,
+        r: GLboolean,
+        g: GLboolean,
+        b: GLboolean,
+        a: GLboolean,
+    ) {
+        unsafe { (self.color_maski)(index, r, g, b, a) }
+    }
+    #[inline]
+    pub unsafe fn get_booleani_v(&self, target: GLenum, index: GLuint, data: *mut GLboolean) {
+        unsafe { (self.get_booleani_v)(target, index, data) }
+    }
+    #[inline]
+    pub unsafe fn get_integeri_v(&self, target: GLenum, index: GLuint, data: *mut GLint) {
+        unsafe { (self.get_integeri_v)(target, index, data) }
+    }
+    #[inline]
+    pub unsafe fn enablei(&self, target: GLenum, index: GLuint) {
+        unsafe { (self.enablei)(target, index) }
+    }
+    #[inline]
+    pub unsafe fn disablei(&self, target: GLenum, index: GLuint) {
+        unsafe { (self.disablei)(target, index) }
+    }
+    #[inline]
+    pub unsafe fn is_enabledi(&self, target: GLenum, index: GLuint) -> GLboolean {
+        unsafe { (self.is_enabledi)(target, index) }
+    }
+    #[inline]
+    pub unsafe fn begin_transform_feedback(&self, primitive_mode: GLenum) {
+        unsafe { (self.begin_transform_feedback)(primitive_mode) }
+    }
+    #[inline]
+    pub unsafe fn end_transform_feedback(&self) {
+        unsafe { (self.end_transform_feedback)() }
+    }
+    #[inline]
+    pub unsafe fn bind_buffer_range(
+        &self,
+        target: GLenum,
+        index: GLuint,
+        buffer: GLuint,
+        offset: GLintptr,
+        size: GLsizeiptr,
+    ) {
+        unsafe { (self.bind_buffer_range)(target, index, buffer, offset, size) }
+    }
+    #[inline]
+    pub unsafe fn bind_buffer_base(&self, target: GLenum, index: GLuint, buffer: GLuint) {
+        unsafe { (self.bind_buffer_base)(target, index, buffer) }
+    }
+    #[inline]
+    pub unsafe fn transform_feedback_varyings(
+        &self,
+        program: GLuint,
+        count: GLsizei,
+        varyings: *const *const GLchar,
+        buffer_mode: GLenum,
+    ) {
+        unsafe { (self.transform_feedback_varyings)(program, count, varyings, buffer_mode) }
+    }
+    #[inline]
+    pub unsafe fn get_transform_feedback_varying(
+        &self,
+        program: GLuint,
+        index: GLuint,
+        buf_size: GLsizei,
+        length: *mut GLsizei,
+        size: *mut GLsizei,
+        type_: *mut GLenum,
+        name: *mut GLchar,
+    ) {
+        unsafe {
+            (self.get_transform_feedback_varying)(
+                program, index, buf_size, length, size, type_, name,
+            )
+        }
+    }
+    #[inline]
+    pub unsafe fn clamp_color(&self, target: GLenum, clamp: GLenum) {
+        unsafe { (self.clamp_color)(target, clamp) }
+    }
+    #[inline]
+    pub unsafe fn begin_conditional_render(&self, id: GLuint, mode: GLenum) {
+        unsafe { (self.begin_conditional_render)(id, mode) }
+    }
+    #[inline]
+    pub unsafe fn end_conditional_render(&self) {
+        unsafe { (self.end_conditional_render)() }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_ipointer(
+        &self,
+        index: GLuint,
+        size: GLint,
+        type_: GLenum,
+        stride: GLsizei,
+        pointer: *const c_void,
+    ) {
+        unsafe { (self.vertex_attrib_ipointer)(index, size, type_, stride, pointer) }
+    }
+    #[inline]
+    pub unsafe fn get_vertex_attrib_iiv(&self, index: GLuint, pname: GLenum, params: *mut GLint) {
+        unsafe { (self.get_vertex_attrib_iiv)(index, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn get_vertex_attrib_iuiv(&self, index: GLuint, pname: GLenum, params: *mut GLuint) {
+        unsafe { (self.get_vertex_attrib_iuiv)(index, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i1i(&self, index: GLuint, x: GLint) {
+        unsafe { (self.vertex_attrib_i1i)(index, x) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i2i(&self, index: GLuint, x: GLint, y: GLint) {
+        unsafe { (self.vertex_attrib_i2i)(index, x, y) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i3i(&self, index: GLuint, x: GLint, y: GLint, z: GLint) {
+        unsafe { (self.vertex_attrib_i3i)(index, x, y, z) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i4i(&self, index: GLuint, x: GLint, y: GLint, z: GLint, w: GLint) {
+        unsafe { (self.vertex_attrib_i4i)(index, x, y, z, w) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i1ui(&self, index: GLuint, x: GLuint) {
+        unsafe { (self.vertex_attrib_i1ui)(index, x) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i2ui(&self, index: GLuint, x: GLuint, y: GLuint) {
+        unsafe { (self.vertex_attrib_i2ui)(index, x, y) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i3ui(&self, index: GLuint, x: GLuint, y: GLuint, z: GLuint) {
+        unsafe { (self.vertex_attrib_i3ui)(index, x, y, z) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i4ui(
+        &self,
+        index: GLuint,
+        x: GLuint,
+        y: GLuint,
+        z: GLuint,
+        w: GLuint,
+    ) {
+        unsafe { (self.vertex_attrib_i4ui)(index, x, y, z, w) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i1iv(&self, index: GLuint, v: *const GLint) {
+        unsafe { (self.vertex_attrib_i1iv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i2iv(&self, index: GLuint, v: *const GLint) {
+        unsafe { (self.vertex_attrib_i2iv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i3iv(&self, index: GLuint, v: *const GLint) {
+        unsafe { (self.vertex_attrib_i3iv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i4iv(&self, index: GLuint, v: *const GLint) {
+        unsafe { (self.vertex_attrib_i4iv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i1uiv(&self, index: GLuint, v: *const GLuint) {
+        unsafe { (self.vertex_attrib_i1uiv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i2uiv(&self, index: GLuint, v: *const GLuint) {
+        unsafe { (self.vertex_attrib_i2uiv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i3uiv(&self, index: GLuint, v: *const GLuint) {
+        unsafe { (self.vertex_attrib_i3uiv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i4uiv(&self, index: GLuint, v: *const GLuint) {
+        unsafe { (self.vertex_attrib_i4uiv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i4bv(&self, index: GLuint, v: *const GLbyte) {
+        unsafe { (self.vertex_attrib_i4bv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i4sv(&self, index: GLuint, v: *const GLshort) {
+        unsafe { (self.vertex_attrib_i4sv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i4ubv(&self, index: GLuint, v: *const GLubyte) {
+        unsafe { (self.vertex_attrib_i4ubv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_i4usv(&self, index: GLuint, v: *const GLushort) {
+        unsafe { (self.vertex_attrib_i4usv)(index, v) }
+    }
+    #[inline]
+    pub unsafe fn get_uniformuiv(&self, program: GLuint, location: GLint, params: *mut GLuint) {
+        unsafe { (self.get_uniformuiv)(program, location, params) }
+    }
+    #[inline]
+    pub unsafe fn bind_frag_data_location(
+        &self,
+        program: GLuint,
+        color: GLuint,
+        name: *const GLchar,
+    ) {
+        unsafe { (self.bind_frag_data_location)(program, color, name) }
+    }
+    #[inline]
+    pub unsafe fn get_frag_data_location(&self, program: GLuint, name: *const GLchar) -> GLint {
+        unsafe { (self.get_frag_data_location)(program, name) }
+    }
+    #[inline]
+    pub unsafe fn uniform1ui(&self, location: GLint, v0: GLuint) {
+        unsafe { (self.uniform1ui)(location, v0) }
+    }
+    #[inline]
+    pub unsafe fn uniform2ui(&self, location: GLint, v0: GLuint, v1: GLuint) {
+        unsafe { (self.uniform2ui)(location, v0, v1) }
+    }
+    #[inline]
+    pub unsafe fn uniform3ui(&self, location: GLint, v0: GLuint, v1: GLuint, v2: GLuint) {
+        unsafe { (self.uniform3ui)(location, v0, v1, v2) }
+    }
+    #[inline]
+    pub unsafe fn uniform4ui(
+        &self,
+        location: GLint,
+        v0: GLuint,
+        v1: GLuint,
+        v2: GLuint,
+        v3: GLuint,
+    ) {
+        unsafe { (self.uniform4ui)(location, v0, v1, v2, v3) }
+    }
+    #[inline]
+    pub unsafe fn uniform1uiv(&self, location: GLint, count: GLsizei, value: *const GLuint) {
+        unsafe { (self.uniform1uiv)(location, count, value) }
+    }
+    #[inline]
+    pub unsafe fn uniform2uiv(&self, location: GLint, count: GLsizei, value: *const GLuint) {
+        unsafe { (self.uniform2uiv)(location, count, value) }
+    }
+    #[inline]
+    pub unsafe fn uniform3uiv(&self, location: GLint, count: GLsizei, value: *const GLuint) {
+        unsafe { (self.uniform3uiv)(location, count, value) }
+    }
+    #[inline]
+    pub unsafe fn uniform4uiv(&self, location: GLint, count: GLsizei, value: *const GLuint) {
+        unsafe { (self.uniform4uiv)(location, count, value) }
+    }
+    #[inline]
+    pub unsafe fn tex_parameter_iiv(&self, target: GLenum, pname: GLenum, params: *const GLint) {
+        unsafe { (self.tex_parameter_iiv)(target, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn tex_parameter_iuiv(&self, target: GLenum, pname: GLenum, params: *const GLuint) {
+        unsafe { (self.tex_parameter_iuiv)(target, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn get_tex_parameter_iiv(&self, target: GLenum, pname: GLenum, params: *mut GLint) {
+        unsafe { (self.get_tex_parameter_iiv)(target, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn get_tex_parameter_iuiv(
+        &self,
+        target: GLenum,
+        pname: GLenum,
+        params: *mut GLuint,
+    ) {
+        unsafe { (self.get_tex_parameter_iuiv)(target, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn clear_bufferiv(&self, buffer: GLenum, drawbuffer: GLint, value: *const GLint) {
+        unsafe { (self.clear_bufferiv)(buffer, drawbuffer, value) }
+    }
+    #[inline]
+    pub unsafe fn clear_bufferuiv(&self, buffer: GLenum, drawbuffer: GLint, value: *const GLuint) {
+        unsafe { (self.clear_bufferuiv)(buffer, drawbuffer, value) }
+    }
+    #[inline]
+    pub unsafe fn clear_bufferfv(&self, buffer: GLenum, drawbuffer: GLint, value: *const GLfloat) {
+        unsafe { (self.clear_bufferfv)(buffer, drawbuffer, value) }
+    }
+    #[inline]
+    pub unsafe fn clear_bufferfi(
+        &self,
+        buffer: GLenum,
+        drawbuffer: GLint,
+        depth: GLfloat,
+        stencil: GLint,
+    ) {
+        unsafe { (self.clear_bufferfi)(buffer, drawbuffer, depth, stencil) }
+    }
+    #[inline]
+    pub unsafe fn get_stringi(&self, name: GLenum, index: GLuint) -> *const GLubyte {
+        unsafe { (self.get_stringi)(name, index) }
+    }
+    #[inline]
+    pub unsafe fn is_renderbuffer(&self, renderbuffer: GLuint) -> GLboolean {
+        unsafe { (self.is_renderbuffer)(renderbuffer) }
+    }
+    #[inline]
+    pub unsafe fn bind_renderbuffer(&self, target: GLenum, renderbuffer: GLuint) {
+        unsafe { (self.bind_renderbuffer)(target, renderbuffer) }
+    }
+    #[inline]
+    pub unsafe fn delete_renderbuffers(&self, n: GLsizei, renderbuffers: *const GLuint) {
+        unsafe { (self.delete_renderbuffers)(n, renderbuffers) }
+    }
+    #[inline]
+    pub unsafe fn gen_renderbuffers(&self, n: GLsizei, renderbuffers: *mut GLuint) {
+        unsafe { (self.gen_renderbuffers)(n, renderbuffers) }
+    }
+    #[inline]
+    pub unsafe fn renderbuffer_storage(
+        &self,
+        target: GLenum,
+        internalformat: GLenum,
+        width: GLsizei,
+        height: GLsizei,
+    ) {
+        unsafe { (self.renderbuffer_storage)(target, internalformat, width, height) }
+    }
+    #[inline]
+    pub unsafe fn get_renderbuffer_parameteriv(
+        &self,
+        target: GLenum,
+        pname: GLenum,
+        params: *mut GLint,
+    ) {
+        unsafe { (self.get_renderbuffer_parameteriv)(target, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn is_framebuffer(&self, framebuffer: GLuint) -> GLboolean {
+        unsafe { (self.is_framebuffer)(framebuffer) }
+    }
+    #[inline]
+    pub unsafe fn bind_framebuffer(&self, target: GLenum, framebuffer: GLuint) {
+        unsafe { (self.bind_framebuffer)(target, framebuffer) }
+    }
+    #[inline]
+    pub unsafe fn delete_framebuffers(&self, n: GLsizei, framebuffers: *const GLuint) {
+        unsafe { (self.delete_framebuffers)(n, framebuffers) }
+    }
+    #[inline]
+    pub unsafe fn gen_framebuffers(&self, n: GLsizei, framebuffers: *mut GLuint) {
+        unsafe { (self.gen_framebuffers)(n, framebuffers) }
+    }
+    #[inline]
+    pub unsafe fn check_framebuffer_status(&self, target: GLenum) -> GLenum {
+        unsafe { (self.check_framebuffer_status)(target) }
+    }
+    #[inline]
+    pub unsafe fn framebuffer_texture_1d(
+        &self,
+        target: GLenum,
+        attachment: GLenum,
+        textarget: GLenum,
+        texture: GLuint,
+        level: GLint,
+    ) {
+        unsafe { (self.framebuffer_texture_1d)(target, attachment, textarget, texture, level) }
+    }
+    #[inline]
+    pub unsafe fn framebuffer_texture_2d(
+        &self,
+        target: GLenum,
+        attachment: GLenum,
+        textarget: GLenum,
+        texture: GLuint,
+        level: GLint,
+    ) {
+        unsafe { (self.framebuffer_texture_2d)(target, attachment, textarget, texture, level) }
+    }
+    #[inline]
+    pub unsafe fn framebuffer_texture_3d(
+        &self,
+        target: GLenum,
+        attachment: GLenum,
+        textarget: GLenum,
+        texture: GLuint,
+        level: GLint,
+        zoffset: GLint,
+    ) {
+        unsafe {
+            (self.framebuffer_texture_3d)(target, attachment, textarget, texture, level, zoffset)
+        }
+    }
+    #[inline]
+    pub unsafe fn framebuffer_renderbuffer(
+        &self,
+        target: GLenum,
+        attachment: GLenum,
+        renderbuffertarget: GLenum,
+        renderbuffer: GLuint,
+    ) {
+        unsafe {
+            (self.framebuffer_renderbuffer)(target, attachment, renderbuffertarget, renderbuffer)
+        }
+    }
+    #[inline]
+    pub unsafe fn get_framebuffer_attachment_parameteriv(
+        &self,
+        target: GLenum,
+        attachment: GLenum,
+        pname: GLenum,
+        params: *mut GLint,
+    ) {
+        unsafe { (self.get_framebuffer_attachment_parameteriv)(target, attachment, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn generate_mipmap(&self, target: GLenum) {
+        unsafe { (self.generate_mipmap)(target) }
+    }
+    #[inline]
+    pub unsafe fn blit_framebuffer(
+        &self,
+        src_x0: GLint,
+        src_y0: GLint,
+        src_x1: GLint,
+        src_y1: GLint,
+        dst_x0: GLint,
+        dst_y0: GLint,
+        dst_x1: GLint,
+        dst_y1: GLint,
+        mask: GLbitfield,
+        filter: GLenum,
+    ) {
+        unsafe {
+            (self.blit_framebuffer)(
+                src_x0, src_y0, src_x1, src_y1, dst_x0, dst_y0, dst_x1, dst_y1, mask, filter,
+            )
+        }
+    }
+    #[inline]
+    pub unsafe fn renderbuffer_storage_multisample(
+        &self,
+        target: GLenum,
+        samples: GLsizei,
+        internalformat: GLenum,
+        width: GLsizei,
+        height: GLsizei,
+    ) {
+        unsafe {
+            (self.renderbuffer_storage_multisample)(target, samples, internalformat, width, height)
+        }
+    }
+    #[inline]
+    pub unsafe fn framebuffer_texture_layer(
+        &self,
+        target: GLenum,
+        attachment: GLenum,
+        texture: GLuint,
+        level: GLint,
+        layer: GLint,
+    ) {
+        unsafe { (self.framebuffer_texture_layer)(target, attachment, texture, level, layer) }
+    }
+    #[inline]
+    pub unsafe fn map_buffer_range(
+        &self,
+        target: GLenum,
+        offset: GLintptr,
+        length: GLsizeiptr,
+        access: GLbitfield,
+    ) -> *mut c_void {
+        unsafe { (self.map_buffer_range)(target, offset, length, access) }
+    }
+    #[inline]
+    pub unsafe fn flush_mapped_buffer_range(
+        &self,
+        target: GLenum,
+        offset: GLintptr,
+        length: GLsizeiptr,
+    ) {
+        unsafe { (self.flush_mapped_buffer_range)(target, offset, length) }
+    }
+    #[inline]
+    pub unsafe fn bind_vertex_array(&self, array: GLuint) {
+        unsafe { (self.bind_vertex_array)(array) }
+    }
+    #[inline]
+    pub unsafe fn delete_vertex_arrays(&self, n: GLsizei, arrays: *const GLuint) {
+        unsafe { (self.delete_vertex_arrays)(n, arrays) }
+    }
+    #[inline]
+    pub unsafe fn gen_vertex_arrays(&self, n: GLsizei, arrays: *mut GLuint) {
+        unsafe { (self.gen_vertex_arrays)(n, arrays) }
+    }
+    #[inline]
+    pub unsafe fn is_vertex_array(&self, array: GLuint) -> GLboolean {
+        unsafe { (self.is_vertex_array)(array) }
+    }
+    #[inline]
+    pub unsafe fn draw_arrays_instanced(
+        &self,
+        mode: GLenum,
+        first: GLint,
+        count: GLsizei,
+        instancecount: GLsizei,
+    ) {
+        unsafe { (self.draw_arrays_instanced)(mode, first, count, instancecount) }
+    }
+    #[inline]
+    pub unsafe fn draw_elements_instanced(
+        &self,
+        mode: GLenum,
+        count: GLsizei,
+        type_: GLenum,
+        indices: *const c_void,
+        instancecount: GLsizei,
+    ) {
+        unsafe { (self.draw_elements_instanced)(mode, count, type_, indices, instancecount) }
+    }
+    #[inline]
+    pub unsafe fn tex_buffer(&self, target: GLenum, internalformat: GLenum, buffer: GLuint) {
+        unsafe { (self.tex_buffer)(target, internalformat, buffer) }
+    }
+    #[inline]
+    pub unsafe fn primitive_restart_index(&self, index: GLuint) {
+        unsafe { (self.primitive_restart_index)(index) }
+    }
+    #[inline]
+    pub unsafe fn copy_buffer_sub_data(
+        &self,
+        read_target: GLenum,
+        write_target: GLenum,
+        read_offset: GLintptr,
+        write_offset: GLintptr,
+        size: GLsizeiptr,
+    ) {
+        unsafe {
+            (self.copy_buffer_sub_data)(read_target, write_target, read_offset, write_offset, size)
+        }
+    }
+    #[inline]
+    pub unsafe fn get_uniform_indices(
+        &self,
+        program: GLuint,
+        uniform_count: GLsizei,
+        uniform_names: *const *const GLchar,
+        uniform_indices: *mut GLuint,
+    ) {
+        unsafe {
+            (self.get_uniform_indices)(program, uniform_count, uniform_names, uniform_indices)
+        }
+    }
+    #[inline]
+    pub unsafe fn get_active_uniformsiv(
+        &self,
+        program: GLuint,
+        uniform_count: GLsizei,
+        uniform_indices: *const GLuint,
+        pname: GLenum,
+        params: *mut GLint,
+    ) {
+        unsafe {
+            (self.get_active_uniformsiv)(program, uniform_count, uniform_indices, pname, params)
+        }
+    }
+    #[inline]
+    pub unsafe fn get_active_uniform_name(
+        &self,
+        program: GLuint,
+        uniform_index: GLuint,
+        buf_size: GLsizei,
+        length: *mut GLsizei,
+        uniform_name: *mut GLchar,
+    ) {
+        unsafe {
+            (self.get_active_uniform_name)(program, uniform_index, buf_size, length, uniform_name)
+        }
+    }
+    #[inline]
+    pub unsafe fn get_uniform_block_index(
+        &self,
+        program: GLuint,
+        uniform_block_name: *const GLchar,
+    ) -> GLuint {
+        unsafe { (self.get_uniform_block_index)(program, uniform_block_name) }
+    }
+    #[inline]
+    pub unsafe fn get_active_uniform_blockiv(
+        &self,
+        program: GLuint,
+        uniform_block_index: GLuint,
+        pname: GLenum,
+        params: *mut GLint,
+    ) {
+        unsafe { (self.get_active_uniform_blockiv)(program, uniform_block_index, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn get_active_uniform_block_name(
+        &self,
+        program: GLuint,
+        uniform_block_index: GLuint,
+        buf_size: GLsizei,
+        length: *mut GLsizei,
+        uniform_block_name: *mut GLchar,
+    ) {
+        unsafe {
+            (self.get_active_uniform_block_name)(
+                program,
+                uniform_block_index,
+                buf_size,
+                length,
+                uniform_block_name,
+            )
+        }
+    }
+    #[inline]
+    pub unsafe fn uniform_block_binding(
+        &self,
+        program: GLuint,
+        uniform_block_index: GLuint,
+        uniform_block_binding: GLuint,
+    ) {
+        unsafe { (self.uniform_block_binding)(program, uniform_block_index, uniform_block_binding) }
+    }
+    #[inline]
+    pub unsafe fn draw_elements_base_vertex(
+        &self,
+        mode: GLenum,
+        count: GLsizei,
+        type_: GLenum,
+        indices: *const c_void,
+        basevertex: GLint,
+    ) {
+        unsafe { (self.draw_elements_base_vertex)(mode, count, type_, indices, basevertex) }
+    }
+    #[inline]
+    pub unsafe fn draw_range_elements_base_vertex(
+        &self,
+        mode: GLenum,
+        start: GLuint,
+        end: GLuint,
+        count: GLsizei,
+        type_: GLenum,
+        indices: *const c_void,
+        basevertex: GLint,
+    ) {
+        unsafe {
+            (self.draw_range_elements_base_vertex)(
+                mode, start, end, count, type_, indices, basevertex,
+            )
+        }
+    }
+    #[inline]
+    pub unsafe fn draw_elements_instanced_base_vertex(
+        &self,
+        mode: GLenum,
+        count: GLsizei,
+        type_: GLenum,
+        indices: *const c_void,
+        instancecount: GLsizei,
+        basevertex: GLint,
+    ) {
+        unsafe {
+            (self.draw_elements_instanced_base_vertex)(
+                mode,
+                count,
+                type_,
+                indices,
+                instancecount,
+                basevertex,
+            )
+        }
+    }
+    #[inline]
+    pub unsafe fn multi_draw_elements_base_vertex(
+        &self,
+        mode: GLenum,
+        count: *const GLsizei,
+        type_: GLenum,
+        indices: *const *const c_void,
+        drawcount: GLsizei,
+        basevertex: *const GLint,
+    ) {
+        unsafe {
+            (self.multi_draw_elements_base_vertex)(
+                mode, count, type_, indices, drawcount, basevertex,
+            )
+        }
+    }
+    #[inline]
+    pub unsafe fn provoking_vertex(&self, mode: GLenum) {
+        unsafe { (self.provoking_vertex)(mode) }
+    }
+    #[inline]
+    pub unsafe fn fence_sync(&self, condition: GLenum, flags: GLbitfield) -> GLsync {
+        unsafe { (self.fence_sync)(condition, flags) }
+    }
+    #[inline]
+    pub unsafe fn is_sync(&self, sync: GLsync) -> GLboolean {
+        unsafe { (self.is_sync)(sync) }
+    }
+    #[inline]
+    pub unsafe fn delete_sync(&self, sync: GLsync) {
+        unsafe { (self.delete_sync)(sync) }
+    }
+    #[inline]
+    pub unsafe fn client_wait_sync(
+        &self,
+        sync: GLsync,
+        flags: GLbitfield,
+        timeout: GLuint64,
+    ) -> GLenum {
+        unsafe { (self.client_wait_sync)(sync, flags, timeout) }
+    }
+    #[inline]
+    pub unsafe fn wait_sync(&self, sync: GLsync, flags: GLbitfield, timeout: GLuint64) {
+        unsafe { (self.wait_sync)(sync, flags, timeout) }
+    }
+    #[inline]
+    pub unsafe fn get_integer64v(&self, pname: GLenum, data: *mut GLint64) {
+        unsafe { (self.get_integer64v)(pname, data) }
+    }
+    #[inline]
+    pub unsafe fn get_synciv(
+        &self,
+        sync: GLsync,
+        pname: GLenum,
+        count: GLsizei,
+        length: *mut GLsizei,
+        values: *mut GLint,
+    ) {
+        unsafe { (self.get_synciv)(sync, pname, count, length, values) }
+    }
+    #[inline]
+    pub unsafe fn get_integer64i_v(&self, target: GLenum, index: GLuint, data: *mut GLint64) {
+        unsafe { (self.get_integer64i_v)(target, index, data) }
+    }
+    #[inline]
+    pub unsafe fn get_buffer_parameteri64v(
+        &self,
+        target: GLenum,
+        pname: GLenum,
+        params: *mut GLint64,
+    ) {
+        unsafe { (self.get_buffer_parameteri64v)(target, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn framebuffer_texture(
+        &self,
+        target: GLenum,
+        attachment: GLenum,
+        texture: GLuint,
+        level: GLint,
+    ) {
+        unsafe { (self.framebuffer_texture)(target, attachment, texture, level) }
+    }
+    #[inline]
+    pub unsafe fn tex_image_2dmultisample(
+        &self,
+        target: GLenum,
+        samples: GLsizei,
+        internalformat: GLenum,
+        width: GLsizei,
+        height: GLsizei,
+        fixedsamplelocations: GLboolean,
+    ) {
+        unsafe {
+            (self.tex_image_2dmultisample)(
+                target,
+                samples,
+                internalformat,
+                width,
+                height,
+                fixedsamplelocations,
+            )
+        }
+    }
+    #[inline]
+    pub unsafe fn tex_image_3dmultisample(
+        &self,
+        target: GLenum,
+        samples: GLsizei,
+        internalformat: GLenum,
+        width: GLsizei,
+        height: GLsizei,
+        depth: GLsizei,
+        fixedsamplelocations: GLboolean,
+    ) {
+        unsafe {
+            (self.tex_image_3dmultisample)(
+                target,
+                samples,
+                internalformat,
+                width,
+                height,
+                depth,
+                fixedsamplelocations,
+            )
+        }
+    }
+    #[inline]
+    pub unsafe fn get_multisamplefv(&self, pname: GLenum, index: GLuint, val: *mut GLfloat) {
+        unsafe { (self.get_multisamplefv)(pname, index, val) }
+    }
+    #[inline]
+    pub unsafe fn sample_maski(&self, mask_number: GLuint, mask: GLbitfield) {
+        unsafe { (self.sample_maski)(mask_number, mask) }
+    }
+    #[inline]
+    pub unsafe fn bind_frag_data_location_indexed(
+        &self,
+        program: GLuint,
+        color_number: GLuint,
+        index: GLuint,
+        name: *const GLchar,
+    ) {
+        unsafe { (self.bind_frag_data_location_indexed)(program, color_number, index, name) }
+    }
+    #[inline]
+    pub unsafe fn get_frag_data_index(&self, program: GLuint, name: *const GLchar) -> GLint {
+        unsafe { (self.get_frag_data_index)(program, name) }
+    }
+    #[inline]
+    pub unsafe fn gen_samplers(&self, count: GLsizei, samplers: *mut GLuint) {
+        unsafe { (self.gen_samplers)(count, samplers) }
+    }
+    #[inline]
+    pub unsafe fn delete_samplers(&self, count: GLsizei, samplers: *const GLuint) {
+        unsafe { (self.delete_samplers)(count, samplers) }
+    }
+    #[inline]
+    pub unsafe fn is_sampler(&self, sampler: GLuint) -> GLboolean {
+        unsafe { (self.is_sampler)(sampler) }
+    }
+    #[inline]
+    pub unsafe fn bind_sampler(&self, unit: GLuint, sampler: GLuint) {
+        unsafe { (self.bind_sampler)(unit, sampler) }
+    }
+    #[inline]
+    pub unsafe fn sampler_parameteri(&self, sampler: GLuint, pname: GLenum, param: GLint) {
+        unsafe { (self.sampler_parameteri)(sampler, pname, param) }
+    }
+    #[inline]
+    pub unsafe fn sampler_parameteriv(&self, sampler: GLuint, pname: GLenum, param: *const GLint) {
+        unsafe { (self.sampler_parameteriv)(sampler, pname, param) }
+    }
+    #[inline]
+    pub unsafe fn sampler_parameterf(&self, sampler: GLuint, pname: GLenum, param: GLfloat) {
+        unsafe { (self.sampler_parameterf)(sampler, pname, param) }
+    }
+    #[inline]
+    pub unsafe fn sampler_parameterfv(
+        &self,
+        sampler: GLuint,
+        pname: GLenum,
+        param: *const GLfloat,
+    ) {
+        unsafe { (self.sampler_parameterfv)(sampler, pname, param) }
+    }
+    #[inline]
+    pub unsafe fn sampler_parameter_iiv(
+        &self,
+        sampler: GLuint,
+        pname: GLenum,
+        param: *const GLint,
+    ) {
+        unsafe { (self.sampler_parameter_iiv)(sampler, pname, param) }
+    }
+    #[inline]
+    pub unsafe fn sampler_parameter_iuiv(
+        &self,
+        sampler: GLuint,
+        pname: GLenum,
+        param: *const GLuint,
+    ) {
+        unsafe { (self.sampler_parameter_iuiv)(sampler, pname, param) }
+    }
+    #[inline]
+    pub unsafe fn get_sampler_parameteriv(
+        &self,
+        sampler: GLuint,
+        pname: GLenum,
+        params: *mut GLint,
+    ) {
+        unsafe { (self.get_sampler_parameteriv)(sampler, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn get_sampler_parameter_iiv(
+        &self,
+        sampler: GLuint,
+        pname: GLenum,
+        params: *mut GLint,
+    ) {
+        unsafe { (self.get_sampler_parameter_iiv)(sampler, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn get_sampler_parameterfv(
+        &self,
+        sampler: GLuint,
+        pname: GLenum,
+        params: *mut GLfloat,
+    ) {
+        unsafe { (self.get_sampler_parameterfv)(sampler, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn get_sampler_parameter_iuiv(
+        &self,
+        sampler: GLuint,
+        pname: GLenum,
+        params: *mut GLuint,
+    ) {
+        unsafe { (self.get_sampler_parameter_iuiv)(sampler, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn query_counter(&self, id: GLuint, target: GLenum) {
+        unsafe { (self.query_counter)(id, target) }
+    }
+    #[inline]
+    pub unsafe fn get_query_objecti64v(&self, id: GLuint, pname: GLenum, params: *mut GLint64) {
+        unsafe { (self.get_query_objecti64v)(id, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn get_query_objectui64v(&self, id: GLuint, pname: GLenum, params: *mut GLuint64) {
+        unsafe { (self.get_query_objectui64v)(id, pname, params) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_divisor(&self, index: GLuint, divisor: GLuint) {
+        unsafe { (self.vertex_attrib_divisor)(index, divisor) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_p1ui(
+        &self,
+        index: GLuint,
+        type_: GLenum,
+        normalized: GLboolean,
+        value: GLuint,
+    ) {
+        unsafe { (self.vertex_attrib_p1ui)(index, type_, normalized, value) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_p1uiv(
+        &self,
+        index: GLuint,
+        type_: GLenum,
+        normalized: GLboolean,
+        value: *const GLuint,
+    ) {
+        unsafe { (self.vertex_attrib_p1uiv)(index, type_, normalized, value) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_p2ui(
+        &self,
+        index: GLuint,
+        type_: GLenum,
+        normalized: GLboolean,
+        value: GLuint,
+    ) {
+        unsafe { (self.vertex_attrib_p2ui)(index, type_, normalized, value) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_p2uiv(
+        &self,
+        index: GLuint,
+        type_: GLenum,
+        normalized: GLboolean,
+        value: *const GLuint,
+    ) {
+        unsafe { (self.vertex_attrib_p2uiv)(index, type_, normalized, value) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_p3ui(
+        &self,
+        index: GLuint,
+        type_: GLenum,
+        normalized: GLboolean,
+        value: GLuint,
+    ) {
+        unsafe { (self.vertex_attrib_p3ui)(index, type_, normalized, value) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_p3uiv(
+        &self,
+        index: GLuint,
+        type_: GLenum,
+        normalized: GLboolean,
+        value: *const GLuint,
+    ) {
+        unsafe { (self.vertex_attrib_p3uiv)(index, type_, normalized, value) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_p4ui(
+        &self,
+        index: GLuint,
+        type_: GLenum,
+        normalized: GLboolean,
+        value: GLuint,
+    ) {
+        unsafe { (self.vertex_attrib_p4ui)(index, type_, normalized, value) }
+    }
+    #[inline]
+    pub unsafe fn vertex_attrib_p4uiv(
+        &self,
+        index: GLuint,
+        type_: GLenum,
+        normalized: GLboolean,
+        value: *const GLuint,
+    ) {
+        unsafe { (self.vertex_attrib_p4uiv)(index, type_, normalized, value) }
     }
 }
